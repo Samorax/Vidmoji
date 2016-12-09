@@ -212,7 +212,6 @@
       <DependentUpon>201612091635197_AddedTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MediaContext\Configuration.cs" />
-    <Compile Include="Model2.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\DeviceSettingsViewModel.cs" />
@@ -226,7 +225,6 @@
     <Compile Include="Models\MediaCollection.cs" />
     <Compile Include="Models\MediaModels.cs" />
     <Compile Include="Models\MediaRelatedItems.cs" />
-    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\MyProfileSetupViewModel.cs" />
     <Compile Include="Models\UserRelatedModel.cs" />
     <Compile Include="Models\user_subscribers.cs" />

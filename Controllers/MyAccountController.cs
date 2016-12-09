@@ -469,8 +469,8 @@ namespace WebApplication1.Controllers
         public ActionResult LibraryAudios()
         {
             var currentUser = User.Identity.GetUserName();
-            var myVideos = Media.videos.Where(v => v.username.Equals(currentUser, StringComparison.OrdinalIgnoreCase)).ToList();
-            HomeController.ExtractAudioFiles(myVideos);
+            audios = Media.videos.Where(v => v.username.Equals(currentUser, StringComparison.OrdinalIgnoreCase) && v.type == 0).ToList();
+           
             if (audios != null)
                 return View(audios);
             ViewBag.NoAudios = "You have not uploaded any Audios.";
