@@ -1,0 +1,97 @@
+﻿@using WebApplication1.Models
+@model ChangePasswordViewModel
+@{
+    ViewBag.Title = "Manage Account - Video Starter Kit";
+}
+
+<div class="tab-content container account-wrapper">
+    <div id="My-Account" class="tab-pane active">
+    <div id="MC_emailo1_msg"></div>
+    @using (Html.BeginForm("Manage", "MyAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h3>Manage Account</h3>
+        <hr class="colorgraph">
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Change Password
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse-in" id="collapseOne">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                User Name:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @if (ViewBag.UserName != null)
+                                {
+                                    @ViewBag.UserName
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                Old Password:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.OldPassword,new { @class = "form-control",placeholder="Enter your old password here" })
+                                @Html.ValidationMessageFor(m => m.OldPassword, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                New Password:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m=>m.NewPassword,new { @class = "form-control", placeholder = "Enter new password here" })
+                                @Html.ValidationMessageFor(m=>m.NewPassword, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                Retype New Password:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.ConfirmPassword,new { @class = "form-control", placeholder = "Retype your new password" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 mobi-center">
+                            <input name="ctl00$MC$emailo1$btn_bsave" value="Change Password" id="MC_emailo1_btn_bsave" class="btn btn-primary btn-lg" type="submit">
+
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+       
+    }
+
+</div>
+        </div>

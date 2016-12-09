@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "VidMoji - Video Starter Kit";
+}
+
+<script id="templateTrendingMedia" type="text/html">
+    <div class="container">
+        <div class="row">
+            <div class="video-wrapper">
+                <div class="video-wrap frame">
+                    <iframe src="http://player.vimeo.com/video/23534361?color=f1b000&title=0&byline=0&portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div id="MC_fvd" class="item">
+                <div id="MC_fvd_sm1_widget" class="feature-video-wrapper">
+                    <div class="container">
+                        <div class="title-btn">
+                            <a id="MC_fvd_sm1_hd1" href=>Featured Videos</a>
+                        </div><div class="item item-video">
+                            <div class="thumb">
+                                <a class="clip-link" href="/video/4/your-smart.aspx" title="Your Smart">
+                                    <span class="clip">
+                                        <img id="p1abl3gnjqcrnmr3c5n131fjst3" src="/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); ">
+                                    </span><span class="overlay"></span>
+                                </a>
+                            </div>
+                            <div class="meta-data">
+                                <h2>
+                                    <a href="/video/4/your-smart.aspx" title="Your Smart">Your Smart</a>
+                                </h2>
+                                <p class="tag">9 months ago</p>
+                                <p class="views">170 views</p>
+                                <a class="category" href="/user/administrator.aspx" title="Administrator">Administrator</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 id="MC_fvd_sm1_cmt" class="panel-title"></h3>
+                                <div id="MC_fvd_sm1_lst" class="section-content grid-small">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content container">
+                            <div class="tab-pane active" id="Trending">
+                                <div id="MC_vd" class="item_pad">
+                                    <div id="MC_vd_sm2_widget" class="tab-video-wrapper">
+                                        <div class="tab-video-container">
+                                            <fieldset class="top-border">
+                                                <legend id="MC_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recent Videos</legend>
+                                                <div id="my-tab-content" class="tab-content">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="section-content grid-small clearfix">
+                                                                
+                          
+                                                                            <div class="navbar-default navbar">
+                                                                                <div class="container">
+                                                                                    <div class="navbar-right">
+                                                                                        <div class="btn-group navbar-btn dropdown">
+                                                                                            <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                Action <span class="caret"></span>
+                                                                                            </button>
+                                                                                            <ul class="dropdown-menu" role="menu" data-labelledby="dLabel">
+                                                                                                <li role="presentation">@Ajax.ActionLink("Recent", "GetVideoItems", new { ItemsProps = "recent" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
+                                                                                                <li role="presentation">@Ajax.ActionLink("Viewed", "GetVideoItems", new { ItemsProps = "viewed" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
+                                                                                                <li>@Ajax.ActionLink("Liked", "GetVideoItems", new { ItemsProps = "liked" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+
+                                                                                                <li>@Ajax.ActionLink("Favorites", "GetVideoItems", new { ItemsProps = "favorites" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                                <li>@Ajax.ActionLink("Comment", "GetVideoItems", new { ItemsProps = "comment" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                        <div class="btn-group navbar-btn">
+                                                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                Action <span class="caret"></span>
+                                                                                            </button>
+                                                                                            <ul class="dropdown-menu">
+                                                                                                <li>@Ajax.ActionLink("Today", "GetVideosTime", new { filter = "today" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                                <li>@Ajax.ActionLink("This Week", "GetVideosTime", new { filter = "this week" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                                <li>@Ajax.ActionLink("This Month", "GetVideosTime", new { filter = "this month" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+
+                                                                                                <li>@Ajax.ActionLink("All the time", "GetVideosTime", new { filter = "all the time" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                        
+
+       
+
+                                                                {{#media.mediaVideos}}
+                                                                <div class="item item-video"id="TrendingVideos">
+                                                                    <div class="thumb">
+                                                                        <a class="clip-link" href="Video/{{videoid}}" title="{{tags}}">
+                                                                            <span class="clip">
+                                                                                <video id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{videofilename}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); "></video>
+                                                                            </span><span class="overlay"></span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="meta-data">
+                                                                        <h2>
+                                                                            <a href="Video/{{videoid}}" title="{{tags}}">{{tags}}</a>
+                                                                        </h2>
+                                                                        <p class="tag">9 months ago</p>
+                                                                        <p class="views">{{views}} views</p>
+                                                                        <a class="category" href="/user/administrator.aspx" title="Administrator">{{username}}</a>
+                                                                    </div>
+                                                                </div>
+                                                                {{/media.mediaVideos}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content container">
+                            <div class="tab-pane active" id="Trending">
+                                <div id="MC_vd" class="item_pad">
+                                    <div id="MC_vd_sm2_widget" class="tab-video-wrapper">
+                                        <div class="tab-video-container">
+                                            <fieldset class="top-border">
+                                                <legend id="MC_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recent Photos</legend>
+                                                <div id="my-tab-content" class="tab-content">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="section-content grid-small clearfix">
+                                                                
+                                                                    
+                                                                            <div class="navbar-default navbar">
+                                                                                <div class="navbar-right">
+                                                                                    <div class="btn-group navbar-btn dropdown">
+                                                                                        <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                            Action <span class="caret"></span>
+                                                                                        </button>
+                                                                                        <ul class="dropdown-menu" aria-labelledby="KLabel">
+                                                                                            <li>@Ajax.ActionLink("Recent", "GetPhotoItems", new { ItemsProps = "recent" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                            <li>@Ajax.ActionLink("Viewed", "GetPhotoItems", new { ItemsProps = "viewed" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                            <li>@Ajax.ActionLink("Liked", "GetPhotoItems", new { ItemsProps = "liked" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+
+                                                                                            <li>@Ajax.ActionLink("Favorites", "GetPhotoItems", new { ItemsProps = "favorites" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                            <li>@Ajax.ActionLink("Comment", "GetPhotoItems", new { ItemsProps = "comment" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <div class="btn-group navbar-btn">
+                                                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                            Action <span class="caret"></span>
+                                                                                        </button>
+                                                                                        <ul class="dropdown-menu">
+                                                                                            <li>@Ajax.ActionLink("Today", "GetPhotosTime", new { filter = "today" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                            <li>@Ajax.ActionLink("This Week", "GetPhotosTime", new { filter = "this week" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                            <li>@Ajax.ActionLink("This Month", "GetPhotosTime", new { filter = "this month" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+
+                                                                                            <li>@Ajax.ActionLink("All the time", "GetPhotosTime", new { filter = "all the time" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingPhotos" })</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                       
+
+                                                                {{#media.mediaPhotos}}
+                                                                <div class="item item-video">
+                                                                    <div class="thumb">
+                                                                        <a class="clip-link" href="Photo/{{imageid}}" title="{{tags}}">
+                                                                            <span class="clip">
+                                                                                <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{filename}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                                                                            </span><span class="overlay"></span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="meta-data">
+                                                                        <h2>
+                                                                            <a href="Photo/{{imageid}}" title="{{tags}}">{{tags}}</a>
+                                                                        </h2>
+                                                                        <p class="tag">9 months ago</p>
+                                                                        <p class="views">{{views}} views</p>
+                                                                        <a class="category" href="/user/{{username}}" title="Administrator">{{username}}</a>
+                                                                    </div>
+                                                                </div>
+                                                                {{/media.mediaPhotos}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content container">
+                            <div class="tab-pane active" id="Trending">
+                                <div id="MC_vd" class="item_pad">
+                                    <div id="MC_vd_sm2_widget" class="tab-video-wrapper">
+                                        <div class="tab-video-container">
+                                            <fieldset class="top-border">
+                                                <legend id="MC_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recent Photos</legend>
+                                                <div id="my-tab-content" class="tab-content">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div id="MC_vd_audio1_1st" class="section-content grid-small clearfix">
+                                                                
+                                                                            <div class="navbar-default navbar">
+                                                                                <div class="navbar-right">
+                                                                                    <div class="btn-group navbar-btn dropdown">
+                                                                                        <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                            Action <span class="caret"></span>
+                                                                                        </button>
+                                                                                        <ul class="dropdown-menu">
+                                                                                            <li>@Ajax.ActionLink("Recent", "GetAudioItems", new { ItemsProps = "recent" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                            <li>@Ajax.ActionLink("Viewed", "GetAudioItems", new { ItemsProps = "viewed" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                            <li>@Ajax.ActionLink("Liked", "GetAudioItems", new { ItemsProps = "liked" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+
+                                                                                            <li>@Ajax.ActionLink("Favorites", "GetAudioItems", new { ItemsProps = "favorites" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                            <li>@Ajax.ActionLink("Comment", "GetAudioItems", new { ItemsProps = "comment" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <div class="btn-group navbar-btn">
+                                                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                            Action <span class="caret"></span>
+                                                                                        </button>
+                                                                                        <ul class="dropdown-menu">
+                                                                                            <li>@Ajax.ActionLink("Today", "GetAudiosTime", new { Filter = "today" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                            <li>@Ajax.ActionLink("This Week", "GetAudiosTime", new { Filter = "This Week" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                            <li>@Ajax.ActionLink("This Month", "GetAudiosTime", new { Filter = "This Month" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+
+                                                                                            <li>@Ajax.ActionLink("All the time", "GetAudiosTime", new { filter = "All the time" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingAudios" })</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        
+
+                                                                {{#media.mediaAudios}}
+                                                                <div class="item item-video">
+                                                                    <div class="thumb">
+                                                                        <a class="clip-link" href="Audio/{{videoid}}" title="{{tags}}">
+                                                                            <span class="clip">
+                                                                                <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{coverurl}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                                                                            </span><span class="overlay"></span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="meta-data">
+                                                                        <h2>
+                                                                            <a href="Audio/{{videoid}}" title="{{tags}}">{{tags}}</a>
+                                                                        </h2>
+                                                                        <p class="tag">9 months ago</p>
+                                                                        <p class="views">{{views}} views</p>
+                                                                        <a class="category" href="/user/{{username}}" title="Administrator">{{username}}</a>
+                                                                    </div>
+                                                                </div>
+                                                                {{/media.mediaAudios}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</script>
+
+<div id="MediaDestinationTags">
+
+</div>

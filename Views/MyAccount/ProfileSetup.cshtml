@@ -1,0 +1,384 @@
+﻿@model WebApplication1.Models.ApplicationUser
+    @{
+        ViewBag.Title = "Profile Setup - Video Starter Kit";
+    }
+
+    <div class="row">
+        <div class="page-container">
+            <div class="container-nav">
+                <div class="tab-content container account-wrapper">
+                    <div class="tab-pane active" id="My-Account">
+                        <div id="MC_profile1_msg">
+                        </div>
+                        <h3>Profile Setup</h3>
+                        <hr class="colorgraph">
+                        <div class="item_pad_2">
+                            <div id="MC_profile1_avator_upd1_lst">
+                                <div class="item">
+                                    <img src="@Url.Content("~/Images/dmember.png")" class="img-thumbnail avator-lg" id="avator">
+                                </div><div class="item"><a data-toggle="modal" href="#myModal">Change</a></div>
+                            </div>
+
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div id="acategory" class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="actxt">Upload Profile Photo</h4>
+                                        </div>
+                                        <div class="model-body">
+                                            <div class="pd_10">
+                                                <div role="form">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label" for="MC_profile1_avator_upd1_ph1">
+                                                                Browse Photo:
+                                                            </label>
+                                                            <div class="col-sm-8">
+                                                                <input name="ctl00$MC$profile1$avator_upd1$ph1" id="MC_profile1_avator_upd1_ph1" type="file">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                            <input name="ctl00$MC$profile1$avator_upd1$btn_save" value="Save Changes" id="MC_profile1_avator_upd1_btn_save" class="btn btn-primary" type="submit">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr class="colorgraph">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            About Me
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Describe Yourself:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_aboutme" rows="2" cols="20" id="MC_profile1_txt_aboutme" class="form-control" onkeyup="Count_Chars(this,'#tabout_cnt',300);" style="height:100px;"></textarea>
+                                                    <strong id="tabout_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                Personal Detail
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        First Name:
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        <input name="ctl00$MC$profile1$txt_firstname" maxlength="50" id="MC_profile1_txt_firstname" class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        Last Name:
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        <input name="ctl00$MC$profile1$txt_lastname" maxlength="50" id="MC_profile1_txt_lastname" class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        Gender:
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        <select name="ctl00$MC$profile1$drp_gender" id="MC_profile1_drp_gender" class="form-control">
+                                                            <option selected="selected" value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        Relationship Status:
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        <select name="ctl00$MC$profile1$drp_rstatus" id="MC_profile1_drp_rstatus" class="form-control">
+                                                            <option selected="selected" value="Single">Single</option>
+                                                            <option value="Taken">Taken</option>
+                                                            <option value="Open">Open</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                                    <div class="form-group">
+                                                        Age:
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-5 col-md-5">
+                                                    <div class="form-group">
+                                                        <input id="MC_profile1_btn_dis" name="ctl00$MC$profile1$age" value="btn_dis" type="radio">
+                                                        Display my age<br>
+                                                        <input id="MC_profile1_btn_nodis" name="ctl00$MC$profile1$age" value="btn_nodis" checked="checked" type="radio">
+                                                        Do not display my age
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="panel-panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                            Hometown/Location
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Hometown:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <input name="ctl00$MC$profile1$txt_hometown" maxlength="50" id="MC_profile1_txt_hometown" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Current City:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <input name="ctl00$MC$profile1$txt_curcity" maxlength="50" id="MC_profile1_txt_curcity" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Current Zip/Postal Code:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <input name="ctl00$MC$profile1$txt_zipcode" maxlength="10" id="MC_profile1_txt_zipcode" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Country:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#jobcareer">
+                                            Jobs/Career
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="jobcareer" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Occupations:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_occupations" rows="2" cols="20" id="MC_profile1_txt_occupations" class="form-control" onkeyup="Count_Chars(this,'#th_cnt',300);" style="height:100px;"></textarea>
+                                                    <strong id="th_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Companies:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_companies" rows="2" cols="20" id="MC_profile1_txt_companies" class="form-control" onkeyup="Count_Chars(this,'#tcom_cnt',300);" style="height:100px;"></textarea>
+
+                                                    <strong id="tcom_cnt">300</strong>chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#education">
+                                            Education
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="education" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Schools:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_schools" rows="2" cols="20" id="MC_profile1_txt_schools" class="form-control" onkeyup="Count_Chars(this,'#tsch_cnt',300);" style="height:100px;"></textarea>
+                                                    <strong id="tsch_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#interests">
+                                            Interests
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="interests" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Interests:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_interests" rows="2" cols="20" id="MC_profile1_txt_interests" class="form-control" onkeyup="Count_Chars(this,'#tint_cnt',300);" style="height:100px;"></textarea>
+
+                                                    <strong id="tint_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Favorite Movies &amp; Shows:
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_movies" rows="2" cols="20" id="MC_profile1_txt_movies" class="form-control" onkeyup="Count_Chars(this,'#tmov_cnt',300);" style="height:100px;"></textarea>
+
+                                                    <strong id="tmov_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Favorite Musics
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_musics" rows="2" cols="20" id="MC_profile1_txt_musics" class="form-control" onkeyup="Count_Chars(this,'#tmus_cnt',300);" style="height:100px;"></textarea>
+                                                    <strong id="tmus_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                                <div class="form-group">
+                                                    Favorite Books
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-md-9">
+                                                <div class="form-group">
+                                                    <textarea name="ctl00$MC$profile1$txt_books" rows="2" cols="20" id="MC_profile1_txt_books" class="form-control" onkeyup="Count_Chars(this,'#tbo_cnt',300);" style="height:100px;"></textarea>
+                                                    <strong id="tbo_cnt">300</strong>
+                                                    chars left.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="colorgraph" />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6 mobi-center">
+                                <input name="ctl00$MC$profile1$btn_bsave" value="Save Changes" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MC$profile1$btn_bsave&quot;, &quot;&quot; true, &quot;usr_gen_prf&quot;, &quot;&quot;, false, false))" id="MC_profile1_btn_bsave" class="btn btn-primary btn-lg" type="submit">
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                            </div>
+                        </div>
+        </div>
+

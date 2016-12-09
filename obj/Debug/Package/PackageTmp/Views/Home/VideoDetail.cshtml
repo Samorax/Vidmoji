@@ -1,0 +1,82 @@
+﻿@model WebApplication1.Models.MediaModels.video
+@{
+    ViewBag.Title = Model.tags + " - Video Starter Kit";
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="row">
+    <div class="col-md-offset-2">
+        <video height="369" controls autoplay>
+            <source src="@Url.Content(Model.videofilename)" />
+            <source src="@Url.Content(Model.videofilename)" type="video/ogg" />
+            This file format is not supported.
+        </video>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel-default col-md-6">
+        <div class="panel-heading">
+            <div class="nav nav-pills">
+                <ul>
+                    <li class="nav-item">
+                        <i class="fa fa-thumbs-up" aria-hidden="true" id="videoThumbsUp" title="like">
+                            @Ajax.ActionLink("Like", "VideothumbsUp", new { id = Model.videoid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "videolikesCount" })
+                        </i>
+                        <span id="videolikesCount">0</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fa fa-thumbs-down" aria-hidden="true" id="videoThumbsDown" title="dislike" dat-like="false" data-videoid="@Model.videoid">
+                            @Ajax.ActionLink("Dislike", "VideothumbsDown", new { id = Model.videoid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "videodislikesCount" })
+                        </i><span id="videodislikesCount">0</span>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" id="videoDescriptionHandler">Description</a></li>
+                    <li class="nav-item"><a class="nav-link" id="videoLyricsHandler">Lyrics</a></li>
+                    <li class="nav-item">@Ajax.ActionLink("Add to Favorite", "AddVideoToFavorites", new { id = Model.videoid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "favoritesFeedback" })</li>
+                </ul>
+            </div>
+        </div>
+        <div id="favoritesFeedback"></div>
+        <h3>@Model.tags</h3>
+        <p>@Model.views Views</p>
+        <p>Uploaded on  @Model.date_added.Value.ToString("MMMM") @Model.date_added.Value.Day, @Model.date_added.Value.Year</p>
+        <div id="videoDescriptionContent" style="visibility:hidden">
+            <article>
+                <h6>Description</h6>
+                <hr />
+                <p>@Model.description</p>
+            </article>
+
+        </div>
+        <div id="videoLyrics"style="visibility:hidden">
+            <article>
+                <h6>Lyrics</h6>
+                <hr />
+            </article>
+        </div>
+
+    </div>
+    <div class="panel-default col-md-5">
+        <div class="panel-heading">
+            <div class="panel-title"><p>My Tags: You must @Html.ActionLink("Log in", "Login", "Account") in order to see your tags</p></div>
+        </div>
+        <div>
+            <div>Other Tags:</div>
+            <div></div>
+        </div>
+        @using (Ajax.BeginForm("AddVideotags", new { id = Model.videoid }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "videoTagFeedback" }, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="text" placeholder="Add Tag" name="Tag" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Add Tag" class="btn btn-primary btn-default" />
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+@section scripts{
+<script src="~/Scripts/Client/VideoDetail.js"></script>
+    }

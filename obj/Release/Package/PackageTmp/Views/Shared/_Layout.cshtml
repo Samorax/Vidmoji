@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    
+    
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+   
+    <link href="~/Content/button.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/flexslider.css" />
+    <link rel="stylesheet" href="~/Content/custom.css">
+    
+    <script src="~/Scripts/Client/QuickSearch.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            // more complex call
+            $('.flexslider').flexslider({
+                slideshow: false,
+                animation: "slide",
+                controlsContainer: ".flex-container",
+                start: function (slider) {
+                    $('.total-slides').text(slider.count);
+                },
+                after: function (slider) {
+                    $('.current-slide').text(slider.currentSlide);
+                }
+            });
+        });
+    </script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body role="main" id="main-body">
+    <div class="navigation-wrapper desktop">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo">
+                        <div style="padding:10px 0px 15px 0px" ;>
+                            <a title="Video Starter Kit" href="/">
+                                <img src="~/Images/logo.png" />
+                            </a>
+                        </div>
+
+                    </div>
+                    <div id="Div1" class="user-panel-v2">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                    <div class="navigation">
+                        <ul>
+                            <li><a href="/Video" class="btn btn-white"><i class='fa fa-youtube-play'></i>Videos</a></li>
+                            <li><a href="/Audio" class="btn btn-white"><i class="fa fa-volume-up"></i>Audios</a></li>
+                            <li><a href="/Photo" class="btn btn-white"><i class="fa fa-photo"></i>Photos</a></li>
+                            <li><a href="/Chop" class="btn btn-white"><i class="fa fa-upload"></i>Chop/Upload</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="search-wrapper">
+        <div class="container">
+            <form action="/Search" method="post">
+                <div class="input-group">
+                    <input name="SearchTerm" type="text" id="search1_txt_search" class="form-control" data-autocomplete-source="@Url.Action("QuickSearch","Home")" placeholder="Search or Paste Youtube Link..." />
+                    <span class="input-group-btn">
+                        <input type="submit" value="Search/Paste Link" id="search1_btn_search" class="btn btn-default" />
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="tagging" class="list-slider-wrapper">
+        <div class="container">
+            <div class="flexslider">
+                <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                    <ul class="slides" style="width: 800%; transition-duration: 0s; transform: translate3d(-904px, 0px, 0px);">
+                        <li class="clone" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="clone" aria-hidden="true" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="flex-active-slide" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="clone" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="clone" aria-hidden="true" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                        <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                        <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                        <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                        <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                        <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                        <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                        <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                        <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                        <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                        <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                        <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                        <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                        <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                        <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                        <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                             </div>
+                        </li>
+                        <li class="clone" style="width: 904px; float: left; display: block;">
+                            <div class="listings">
+                                <ul class="clearfix">
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ol class="flex-control-nav flex-control-paging">
+                    <li>
+                        <a class="flex-active">1</a>
+                    </li>
+                    <li>
+                        <a>2</a>
+                    </li>
+                </ol>
+                <ul class="flex-direction-nav">
+                    <li><a class="flex-prev" href="#">Previous</a></li>
+                    <li><a class="flex-next" href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="container body-content">
+        @RenderBody()
+        <hr style="border: 1px solid #f28322;" />
+        <p class="scroll-top"><a href="#" style="display: block;"><i class="fa fa-arrow-up"></i></a></p>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-6 b-r">
+                        <div class="widget">
+                            <ul>
+                                <li>@Html.ActionLink("Videos", "Video", "Home")</li>
+                                <li>@Html.ActionLink("Audios", "Audio", "Home")</li>
+                                <li>@Html.ActionLink("Photos", "Photo", "Home")</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-6 b-r">
+                        <div class="widget text-center">
+                            <ul>
+                                <li>@Html.ActionLink("Terms of Use", "Terms", "Home")</li>
+                                <li>@Html.ActionLink("Privacy Policy", "Privacy", "Home")</li>
+                                <li>@Html.ActionLink("SiteMap", "SiteMap", "Home")</li>
+                                <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 b-r">
+                        <div class="widget copyright">
+                            <p>© Copyright © 2016 </p>
+
+                            <div class="social-icon">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
+
+                $("input[data-autocomplete-source]").each(function () {
+                    var target = $(this);
+                    target.autocomplete({ source: target.attr("data-autocomplete-source") });
+                });
+
+            var owl = $("#owl-demo");
+            owl.owlCarousel({
+                autoPlay: false,
+                autoHeight: true,
+                mouseDrag: false,
+                addClassActive: true,
+                items: 1, //10 items above 1000px browser width
+                itemsDesktop: [1000, 1], //5 items between 1000px and 901px
+                itemsDesktopSmall: [900, 1], // betweem 900px and 601px
+                itemsTablet: [600, 1], //2 items between 600 and 0
+                itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+            });
+            // Custom Navigation Events
+            $(".next").click(function () {
+                owl.trigger('owl.next');
+            });
+            $(".prev").click(function () {
+                owl.trigger('owl.prev');
+            });
+        })
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script src="~/Scripts/Client/vsk.js"></script>
+    <script src="~/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/mustache.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/bower_components/dropdown.js/jquery.dropdown.js"></script>
+    <script type="text/javascript">
+    $.getJSON("IndexMediaCollection", function (data) {
+        var dataTemplate = Mustache.to_html($("#templateTrendingMedia").html(), { media: data });
+        $("#MediaDestinationTags").empty().html(dataTemplate)
+    })
+    </script>
+    <script src="~/Scripts/Client/VideoDetail.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

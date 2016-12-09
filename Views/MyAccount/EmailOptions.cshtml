@@ -1,0 +1,148 @@
+﻿@model WebApplication1.Models.EmailOptionsModel
+@{
+    ViewBag.Title = "Email Options - Video Starter Kit";
+}
+
+<div class="row">
+
+    <div id="MC_emailo1_msg"></div>
+    <h3>Email Options</h3>
+    <hr class="colorgraph">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        E-mail Address
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="item_pad_2">
+                        <p> Enter a new email address and your current password, and click "Send Email". You will receive a confirmation email at the new address containing a link to confirm the change.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-9">
+                            <div class="form-group">
+                                @if (ViewBag.userEmail != null)
+                                {
+                                    <strong>Current E-mail Address:</strong> <span id="MC_emailo1_cemail">@ViewBag.userEmail</span>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                New E-mail Address:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.NewEmail,new { @class="form-control",maxlength="50"})
+                                @Html.ValidationMessageFor(m => m.NewEmail, null,new { @class="text-danger"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                Account Password:
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.AccountPassword,new { @class="form-control",maxlength="50"})
+                                @Html.ValidationMessageFor(m => m.AccountPassword, null,new { @class="text-danger"})
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 mobi-center">
+                            <input name="ctl00$MC$emailo1$btn_send" value="Send Confirmation" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MC$emailo1$btn_send&quot;, &quot;&quot;, true, &quot;val_emlopt&quot;, &quot;&quot;, false, false))" id="MC_emailo1_btn_send" class="btn btn-primary" type="submit">
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#interests">
+                        How Often We Email You
+                    </a>
+                </h4>
+            </div>
+            <div id="interests" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <div>
+                                    @Html.RadioButtonFor(m => m.SendEventEmails, new { value = "r_send",name="SendEvents" })
+                                    @Html.LabelFor(m => m.SendEventEmails)
+                                    </div>
+                                
+                                <div>
+                                    @Html.RadioButtonFor(m => m.DontSendEventEmails, new { value = "r_nosend",name="SendEvents" })
+                                    @Html.LabelFor(m => m.DontSendEventEmails)
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-9">
+                            <div class="form-group">
+                                <div id="MC_emailo1_chk_lst" style="padding-left: 10px; line-height: 20px;" class="item">
+                                   <div>
+                                       @Html.CheckBoxFor(m => m.CommentorVideoResponse, new { @checked = "checked" })
+                                       @Html.LabelFor(m => m.CommentorVideoResponse)
+                                   </div>
+                                    <div>
+                                        @Html.CheckBoxFor(m => m.CommentLeftChannel, new { @checked = "checked" })
+                                        @Html.LabelFor(m => m.CommentLeftChannel)
+                                    </div>
+                                    <div>
+                                        @Html.CheckBoxFor(m => m.PrivateMessage, new { @checked = "checked" })
+                                        @Html.LabelFor(m=>m.PrivateMessage)
+                                    </div>
+                                    <div>
+                                        @Html.CheckBoxFor(m => m.FriendInvite, new { @checked = "checked" })
+                                        @Html.LabelFor(m=>m.FriendInvite)
+                                    </div>
+                                    <div>
+                                        @Html.CheckBoxFor(m => m.channelSubscription, new { @checked = "checked" })
+                                        @Html.LabelFor(m=>m.channelSubscription)
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 mobi-center">
+                            <input name="ctl00$MC$emailo1$btn_bsave" value="Save Changes" id="MC_emailo1_btn_bsave" class="btn btn-primary" type="submit">
+
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        </div>
+    </div>
+</div>
+

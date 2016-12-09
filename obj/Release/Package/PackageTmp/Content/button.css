@@ -1,0 +1,14 @@
+.upload-btn {
+  background: white;
+  border: 1px solid #F28322;
+  padding: 2px 20px;
+  border-radius: 0;
+  color: #F28322;
+  width: 75px;
+  height: 26px;
+}
+.upload-btn:hover,
+.upload-btn:focus {
+  background: #F28322;
+  color: white;
+}

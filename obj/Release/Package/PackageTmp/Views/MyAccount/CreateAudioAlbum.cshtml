@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Create Audio Album - Video Starter Kit";
+}
+
+<div id="main" runat="server">
+    <div class="row">
+        <div class="col-lg-12">
+            <div role="form">
+                <h3 id="cmt" runat="server"></h3>
+                <hr class="colorgraph" />
+                <fieldset>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for="<%=txt_title.ClientID %>">
+                                    <%= Resources.vsk.title%>:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:TextBox CssClass="form-control" ID="txt_title" placeholder="Enter Album Title" MaxLength="100" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_title"
+                                                            ErrorMessage="required" ToolTip="required" SetFocusOnError="true" CssClass="mini-text red bold" ValidationGroup="val_upload">
+                                </asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for="<%=txt_description.ClientID %>">
+                                    <%= Resources.vsk.description%>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:TextBox CssClass="form-control" ID="txt_description" MaxLength="2000" onkeyup="Count_Chars(this,'#th_cnt',2000);"
+                                             TextMode="multiLine" Height="70px" runat="server">
+                                </asp:TextBox><br />
+                                <strong id="th_cnt">2000</strong>
+                                <%= Resources.vsk.charsleft%>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for=" <%= txt_tags.ClientID %>">
+                                    <%= Resources.vsk.tags %>:</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:TextBox CssClass="form-control" ID="txt_tags" MaxLength="100" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txt_title"
+                                                            ErrorMessage="required" ToolTip="required" SetFocusOnError="true" CssClass="mini-text red bold" ValidationGroup="val_upload">
+                                </asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="scat" runat="server">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for="<%=drp_category.ClientID %>">
+
+                                    <%= Resources.vsk.selectcategory %>:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:DropDownList CssClass="form-control" ID="drp_category" runat="server" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="req_c" runat="server" ControlToValidate="drp_category"
+                                                            ErrorMessage="required" ToolTip="required" SetFocusOnError="true" CssClass="mini-text red bold" ValidationGroup="val_upload">
+                                </asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="mcat" runat="server">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for="<%=l_category.ClientID %>">
+                                    Select Categories:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:ListBox CssClass="form-control" ID="l_category" Height="100" SelectionMode="Multiple" runat="server"
+                                             AppendDataBoundItems="true"></asp:ListBox>
+                                <asp:RequiredFieldValidator ID="req_l" runat="server" ControlToValidate="l_category"
+                                                            ErrorMessage="required" ToolTip="required" CssClass="mini-text red bold" SetFocusOnError="true"
+                                                            ValidationGroup="val_upload">
+                                </asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label for=" <%= drp_privacy.ClientID %>">
+                                    Privacy:</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                            <div class="form-group">
+                                <asp:DropDownList CssClass="form-control" ID="drp_privacy" runat="server" AppendDataBoundItems="true">
+                                    <asp:ListItem Selected="True" Value="">Select Privacy Option</asp:ListItem>
+                                    <asp:ListItem Value="0">Public</asp:ListItem>
+                                    <asp:ListItem Value="2">Unlisted</asp:ListItem>
+                                    <asp:ListItem Value="3">Private</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="drp_privacy"
+                                                            ErrorMessage="required" ToolTip="required" SetFocusOnError="true" CssClass="mini-text red bold" ValidationGroup="val_upload">
+                                </asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="colorgraph" />
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <asp:Button ID="btn_update" CssClass="btn btn-primary btn-lg" runat="server" ValidationGroup="val_upload"
+                                        OnClick="btn_post_Click" />
+
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    </div>
+

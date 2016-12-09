@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication1.Models.MediaModels.photo>
+
+@foreach (var item in Model)
+{
+    <div class="item item-video">
+        <div class="thumb">
+            <a class="clip-link" href="Photo/@item.imageid" title="@item.tags">
+                <span class="clip">
+                    <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="@item.filename" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                </span><span class="overlay"></span>
+            </a>
+        </div>
+        <div class="meta-data">
+            <h2>
+                <a href="Photo/@item.imageid" title="@item.tags">@item.tags</a>
+            </h2>
+            <p class="tag">9 months ago</p>
+            <p class="views">@item.views views</p>
+            <a class="category" href="/user/@item.username" title="Administrator">@item.username</a>
+        </div>
+    </div>
+}
+

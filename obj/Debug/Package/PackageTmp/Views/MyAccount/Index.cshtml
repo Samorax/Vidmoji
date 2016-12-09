@@ -1,0 +1,132 @@
+﻿@model WebApplication1.Models.ApplicationUser
+@{
+    ViewBag.Title = "MyAccount - Video Starter Kit";
+}
+
+<div class="row">
+    <div class="page-content">
+        <div class="container-nav">
+            <div id="MC_left_nav1_nav" class="container">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active">@Html.ActionLink("Overview", "Index")</li>
+                    <li class="">@Html.ActionLink("Profile SetUp", "ProfileSetup")</li>
+                    <li class="">@Html.ActionLink("Email Options", "EmailOptions")</li>
+                    <li class="">@Html.ActionLink("Manage", "ManageAccount")</li>
+                    <li class="">@Html.ActionLink("Settings", "Settings")</li>
+                    <li class="">@Html.ActionLink("Library", "Library")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content container account-wrapper">
+        <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+            <div class="profile-box">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-4">
+                        <div id="MC_avator_upd21_lst">
+                            <div class="item">
+                                <img src="/images/dmember.png" class="img-thumbnail avator-lg" id="avator">
+                            </div><div class="item"><a data-toggle="modal" href="#myModal">Change</a></div>
+                        </div>
+                        <div class="modal fade" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div id="acategory" class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="actxt">Upload Profile Photo</h4>
+                                    </div>
+                                    <div class="model-body">
+                                        <div class="pd_10">
+                                            <div role="form">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label" for="MC_avator_upd21_ph1">
+                                                            Browse Photo:
+                                                        </label>
+                                                        <div class="col-sm-8">
+                                                            <input name="ctl00$MC$avator_upd21$ph1" id="MC_avator_upd21_ph1" type="file">
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                        <input name="ctl00$MC$avator_upd21$btn_save" value="Save Changes" id="MC_avator_upd21_btn_save" class="btn btn-primary" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-8">
+
+                        <div id="MC_ovr_first" style="line-height: 16px;">
+                                <p class="name">@Model.UserName</p>
+                                <p class="gender">@Model.gender</p>
+                                <p class="country">@Model.countryname</p>
+                                <p class="channel">Channel Views: <span>@Model.views</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div class="profile-gallery">
+    <div id="MC_lst" class="ver_lst">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box">
+                    <div class="heading">
+                        <h4>Videos</h4><i class="fa fa-video-camera"></i>
+                    </div>
+                    <div class="gallery-list">
+                        <ul>
+                            <li>@Html.ActionLink("Upload Videos", "UploadOptions")</li>
+                            <li>@Html.ActionLink("My Videos", "MyVideos")</li>
+                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Liked Videos", "MyLikedVideos")</li>
+                            <li>@Html.ActionLink("My Favorited Videos", "MyFavoritedVideos")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box">
+                    <div class="heading">
+                        <h4>Photos</h4><i class="fa fa-photo"></i>
+                    </div>
+                    <div class="gallery-list">
+                        <ul>
+                            <li>@Html.ActionLink("Upload Photos", "UploadOptions")</li>
+                            <li>@Html.ActionLink("My Photos", "MyPhotos")</li>
+                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Liked Photos", "MyLikedPhotos")</li>
+                            <li>@Html.ActionLink("My Favorited Photos", "MyFavoritedPhotos")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box">
+                    <div class="heading">
+                        <h4>Audio</h4><i class="fa fa-video-camera"></i>
+                    </div>
+                    <div class="gallery-list">
+                        <ul>
+                            <li>@Html.ActionLink("Upload Audios", "UploadOptions")</li>
+                            <li>@Html.ActionLink("My Audios", "MyAudios")</li>
+                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Liked Audios", "MyLikedAudios")</li>
+                            <li>@Html.ActionLink("My Favorited Audios", "MyFavoritedAudios")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+     
+

@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Audios - Video Starter Kit"; 
+ }
+
+<script type="text/html" id="templateTrendingMedia">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-8 col-lg-8">
+                <ol id="MC_MC_bread" class="breadcrumb">
+                    <li>@Html.ActionLink("Home", "Index")</li>
+                    <li>@Html.ActionLink("Videos", "Video", null, new { @class = "active" })</li>
+                </ol>
+                <div class="panel">
+                    <div class="panel-default" id="MC_MC_1st1_hd">
+                        <div class="row">
+                            <div class="col-md-7 col-md-8">
+                                <h1 id="MC_MC_lst1_lbl_status" class="istitle">Recently Added Videos</h1>
+                            </div>
+                            <div class="col-md-5 col-lg-4"></div>
+                        </div>
+                        <hr class="colorgraph" />
+                    </div>
+                    <div class="nmtabs">
+                        <div id="MC_MC_lst1_lstat" class="pd_5 item_r">
+                            <span id="MC_MC_lst1_list_stat1_vd_stat" class="normal-text light">
+                                Showing
+                                <strong>1</strong>
+                                to
+                                <strong>12</strong>
+                                records
+                            </span>
+                        </div>
+                        <div id="MC_MC_lst1_lnav">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="/videos/">Recently Added</a></li>
+                                <li><a href="/videos/mostviewed.aspx">Most Viewed</a></li>
+                                <li><a href="/videos/toprated.aspx">Top Rated</a></li>
+                                <li><a href="/videos/mostcommented.aspx">Most Commented</a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div id="MC_MC_lst1_lst" style="padding-left:10px;" class="clearfix">
+                        <div class="row marginfixed">
+                            {{#media.mediaAudios}}
+                            <div class="item item-video">
+                                <div class="thumb">
+                                    <a class="clip-link" href="Audio/{{videoid}}" title="{{tags}}">
+                                        <span class="clip">
+                                            <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{coverurl}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                                        </span><span class="overlay"></span>
+                                    </a>
+                                </div>
+                                <div class="meta-data">
+                                    <h2>
+                                        <a href="Audio/{{videoid}}" title="{{tags}}">{{tags}}</a>
+                                    </h2>
+                                    <p class="tag">9 months ago</p>
+                                    <p class="views">{{views}} views</p>
+                                    <a class="category" href="/user/{{username}}" title="Administrator">{{username}}</a>
+                                </div>
+                            </div>
+                            {{/media.mediaAudios}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-4 col-lg-4 pull-right lnav">
+                        <div class="tab-video-container">
+                            <fieldset class="top-border search-wrapper">
+                                <div class="panel-body">
+                                    <div class="input-group input-group-sm">
+                                        <input name="ctl00$ctl00$MC$navigation1$txt_search" type="text" id="MC_navigation1_txt_search" class="form-control" placeholder="Search Videos">
+                                        <span class="input-group-btn">
+                                            <input type="submit" name="ctl00$ctl00$MC$navigation1$btn_u_search" value="Search" id="MC_navigation1_btn_u_search" class="btn btn-default">
+                                        </span>
+                                    </div>
+                                    <div class="help-block item_r">
+                                        @Html.ActionLink("Advance Search", "AdvanceSearch", null, new { id = "MC_navigation1_asearch" })
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div id="MC_navigation1_categories1_main">
+                            <div class="tab-video-container">
+                                <fieldset class="top-border">
+                                    <legend style="text-align: center;" class="top-border" align="center">Videos Categories</legend>
+                                    <div id="MC_navigation1_categories1_hd" class="panel-heading" style="display: none;">
+                                        <h3 id="MC_navigation1_categories1_htitle" class="panel-title">Videos Categories</h3>
+                                    </div>
+                                    <div class="panel-body item">
+                                        <div id="MC_navigation1_categories1_lst" class=" clearfix">
+                                            <div>
+                                            </div><!-- Close floating div --><div style="width:100%;float:left;" class="item">
+                                                <div class="well-spad">
+                                                    <a href="/videos/category/autos-and-vehicles.aspx" class="medium-text bold reverse" title="Autos And Vehicles">Autos and Vehicles</a>
+                                                </div>
+                                            </div><!-- Close floating div --><div class="clearfix"></div>
+                                            <!-- clear floating --><div style="width:100%;float:left;" class="item">
+                                                <div class="well-spad">
+                                                    <a href="/videos/category/entertainment.aspx" class="medium-text bold reverse" title="Entertainment">Entertainment</a>
+                                                </div>
+                                            </div><!-- Close floating div --><div class="clearfix"></div>
+                                            <!-- clear floating --><div style="width:100%;float:left;" class="item">
+                                                <div class="well-spad">
+                                                    <a href="/videos/category/comedy.aspx" class="medium-text bold reverse" title="Comedy">Comedy</a>
+                                                </div>
+                                            </div><!-- Close floating div --><div class="clearfix"></div>
+                                            <!-- clear floating --><div style="width:100%;float:left;" class="item">
+                                                <div class="well-spad">
+                                                    <a href="/videos/category/film-and-animation.aspx" class="medium-text bold reverse" title="Film And Animation">Film and Animation</a>
+                                                </div>
+                                            </div>
+                                            <div class="item_pad_2_r"><a href="/videos/categories/" class="" title="Browse more video categories">See all</a></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div id="MC_navigation1_tags1_widget" class="panel flow_lst">
+                            <div class="panel panel-default">
+                                <div id="MC_navigation1_tags1_hd" class="panel-heading">
+                                    <h3 id="MC_navigation1_tags1_htitle" class="panel-title">Videos Tags</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="MC_navigation1_tags1_lst" class=" clearfix">
+                                        <div class="bx_br_bt item_pad_4">
+                                            <div class="flow_lst">
+                                                <ul>
+                                                    <li><a href="/videos/tag/good-morning.aspx" alt="good morning videos album">good morning</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="MC_navigation1_archives1_widget" class=" ver_lst">
+                            <div class="tab-video-container">
+                                <fieldset class="top-border">
+                                    <legend style="text-align: center;" class="top-border" align="center">Archives</legend>
+                                    <div id="MC_navigation1_archives1_hd" class="panel-heading" style="display: none;">
+                                        <h3 id="MC_navigation1_archives1_htitle" class="panel-title">Archives</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="MC_navigation1_archives1_lst">
+                                            <div class="item">
+                                                <div class="ver_lst%;">
+                                                    <ul>
+                                                        <li><a href="/videos/archive/2016/2/default.aspx" title=" added in February 2016">February 2016</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ver_lst%;">
+                                                    <ul></ul>
+                                                </div><div class="clearfix"></div>
+                                            </div>
+                                            <div class="item_pad_4_r"><a href="/videos/archive.aspx" title="">See All</a></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div id="MC_navigation1_vd_sm2_widget" class="tab-video-wrapper">
+
+                            <div class="tab-video-container">
+                                <fieldset class="top-border">
+                                    <legend id="MC_navigation1_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recently Added Videos</legend>
+
+
+                                    <div id="my-tab-content" class="tab-content">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="MC_navigation1_vd_sm2_lst" class="section-content grid-small clearfix">
+                                                    <div class="item item-video">
+                                                        <div class="thumb">
+                                                            <a class="clip-link" href="/video/10013/good-morning.aspx" title="good morning"><span class="clip"><img id="p1achgi72dd89hv9cf6guq8kn3" src="/contents/member/aaaaaa/Thumbs/p1achgi72dd89hv9cf6guq8kn3_008.jpg" onmouseout="endm('p1achgi72dd89hv9cf6guq8kn3'); this.src='/contents/member/aaaaaa/Thumbs/p1achgi72dd89hv9cf6guq8kn3_008.jpg'; " onmouseover="startm('p1achgi72dd89hv9cf6guq8kn3','/contents/member/aaaaaa/Thumbs/p1achgi72dd89hv9cf6guq8kn3_','.jpg'); "></span><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="meta-data">
+                                                            <h2><a href="/video/10013/good-morning.aspx" title="good morning">good morning</a></h2><p class="views">214 views</p>
+                                                        </div>
+                                                    </div><div class="item item-video">
+                                                        <div class="thumb">
+                                                            <a class="clip-link" href="/video/10012/say-what-again.aspx" title="Say What Again"><span class="clip"><img id="p1ac4uff7q1lvagtb1rj6uhi13p93" src="/contents/member/aaaaaa/Thumbs/p1ac4uff7q1lvagtb1rj6uhi13p93_014.jpg" onmouseout="endm('p1ac4uff7q1lvagtb1rj6uhi13p93'); this.src='/contents/member/aaaaaa/Thumbs/p1ac4uff7q1lvagtb1rj6uhi13p93_014.jpg'; " onmouseover="startm('p1ac4uff7q1lvagtb1rj6uhi13p93','/contents/member/aaaaaa/Thumbs/p1ac4uff7q1lvagtb1rj6uhi13p93_','.jpg'); "></span><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="meta-data">
+                                                            <h2><a href="/video/10012/say-what-again.aspx" title="Say What Again">Say What Again</a></h2><p class="views">46 views</p>
+                                                        </div>
+                                                    </div><div class="item item-video">
+                                                        <div class="thumb">
+                                                            <a class="clip-link" href="/video/10011/ha-ha-ha.aspx" title="HA HA HA"><span class="clip"><img id="p1abv9pfc7utq1g0917pr1b3b13ak4" src="/contents/member/aaaaaa/Thumbs/p1abv9pfc7utq1g0917pr1b3b13ak4_013.jpg" onmouseout="endm('p1abv9pfc7utq1g0917pr1b3b13ak4'); this.src='/contents/member/aaaaaa/Thumbs/p1abv9pfc7utq1g0917pr1b3b13ak4_013.jpg'; " onmouseover="startm('p1abv9pfc7utq1g0917pr1b3b13ak4','/contents/member/aaaaaa/Thumbs/p1abv9pfc7utq1g0917pr1b3b13ak4_','.jpg'); "></span><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="meta-data">
+                                                            <h2><a href="/video/10011/ha-ha-ha.aspx" title="HA HA HA">HA HA HA</a></h2><p class="views">34 views</p>
+                                                        </div>
+                                                    </div><div class="item item-video">
+                                                        <div class="thumb">
+                                                            <a class="clip-link" href="/video/10010/so.aspx" title="So?"><span class="clip"><img id="p1abv9pfc75ndc6or31ml8sfk3" src="/contents/member/aaaaaa/Thumbs/p1abv9pfc75ndc6or31ml8sfk3_008.jpg" onmouseout="endm('p1abv9pfc75ndc6or31ml8sfk3'); this.src='/contents/member/aaaaaa/Thumbs/p1abv9pfc75ndc6or31ml8sfk3_008.jpg'; " onmouseover="startm('p1abv9pfc75ndc6or31ml8sfk3','/contents/member/aaaaaa/Thumbs/p1abv9pfc75ndc6or31ml8sfk3_','.jpg'); "></span><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="meta-data">
+                                                            <h2><a href="/video/10010/so.aspx" title="So?">So?</a></h2><p class="views">25 views</p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </div>
+                  
+                    </div>
+                </div>
+               
+</script>
+<div id="MediaDestinationTags">
+   
+</div>
+

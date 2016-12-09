@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Library My Audios - Video Starter Kit";
+}
+
+
+@{
+    ViewBag.Title = "Library My Albums - VIdeo Starter Kit";
+}
+
+
+<div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="MC_vd_nav1_nav" class="list-group">
+                @Html.ActionLink("My Albums", "MyAlbums", new { @class = "list-group-item condensed active" }))
+                @Html.ActionLink("My Videos", "LibraryVideos", new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Audios", "LibraryAudios", new { @class = "list-group-item condensed" })
+                @Html.Action("My Photos", "LibraryPhotos", new { @class = "list-group-item condensed" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- main content section -->
+            <span id="MC_myvideos_v11_UpdatePanel2"></span>
+            <div id="MC_myvideos_v11_msg">
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-9">
+                    <h3 id="MC_myvideos_v11_header_txt">My Tagged Audios</h3>
+                </div>
+                <div class="col-md-5 col-lg-3">
+                    <div class="input-group input-group-sm">
+                        <input name="ctl00$MC$myvideos_v11$txt_search" id="MC_myvideos_v11_txt_search" class="form-control" placeholder="Search Library" type="text">
+                        <span class="input-group-btn">
+                            <input name="ctl00$MC$myvideos_v11$btn_u_search" value="Search" id="MC_myvideos_v11_btn_u_search" class="btn btn-primary" type="submit">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr class="colorgraph">
+            <div class="col-xs-12 col-md-6">
+                @Html.ActionLink("Create Album", "CreateAudioAlbum", null, new { title = "Upload New Audio Album", @class = "btn btn-info btn-sm", id = "MC_myvideos_v11_cAlbum" })
+                @Html.ActionLink("Upload Audio", "UploadMedia", null, new { title = "Upload New Audio", @class = "btn btn-success btn-sm", id = "MC_myvideos_v11_uVideos" })
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div id="MC_myvideos_v11_norecord" class="jumbotron marginfixed item_c">
+                    @if (ViewBag.NoAudios != null)
+                    {
+                        <h3 id="MC_myvideos_v11_norec">@ViewBag.NoAudios</h3>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

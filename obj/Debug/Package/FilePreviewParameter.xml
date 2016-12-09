@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Vidmoji" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Vidmojidb-Web.config Connection String" description="" value="data source=tcp:byy2cseq1w.database.windows.net,1433;initial catalog=Vidmojidb;user id=VidmojiApp@byy2cseq1w;password=Trans4mation?!;App=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Vidmojidb']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.DAL.MediaContext-Web.config Connection String" description="" value="Data Source=tcp:byy2cseq1w.database.windows.net,1433;Initial Catalog=Vidmojidb;User Id=VidmojiApp@byy2cseq1w;Password=Trans4mation?!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.DAL.MediaContext']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.DAL.UserRelatedDbContext-Web.config Connection String" description="" value="Data Source=tcp:byy2cseq1w.database.windows.net,1433;Initial Catalog=Vidmojidb;User Id=VidmojiApp@byy2cseq1w;Password=Trans4mation?!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.DAL.UserRelatedDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.Model2-Web.config Connection String" description="" value="Data Source=tcp:byy2cseq1w.database.windows.net,1433;Initial Catalog=Vidmojidb;User Id=VidmojiApp@byy2cseq1w;Password=Trans4mation?!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.Model2']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.Models.Model1-Web.config Connection String" description="" value="Data Source=tcp:byy2cseq1w.database.windows.net,1433;Initial Catalog=Vidmojidb;User Id=VidmojiApp@byy2cseq1w;Password=Trans4mation?!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.Models.Model1']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

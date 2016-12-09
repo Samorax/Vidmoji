@@ -1,0 +1,81 @@
+﻿@using WebApplication1.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in - Video Starter Kit";
+}
+
+
+<div class="row">
+    <div id="MC_msg"></div>
+    <div class="module ui-corner-all">
+        <div id="MC_pnlLogin">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                @using (Html.BeginForm("Login", "Account", new { returnurl = ViewBag.returnurl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h2>Sign In</h2>
+                    <hr class="colograph" />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.UserName)
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter UserName" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password)
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_pad_4">@Html.ActionLink("Create Account", "Register")</div>
+                        <div class="item_pad_4">@Html.ActionLink("Forgot password?", "ForgotPassword")</div>
+                        <hr class="colograph" />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <input type="submit" value="Log in" class="btn btn-primary btn-block btn-lg" />
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }

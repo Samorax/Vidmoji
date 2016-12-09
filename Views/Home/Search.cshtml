@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.MediaCollection
+@{
+    ViewBag.Title = "Search - Video Starter Kit";
+}
+
+<h2>Search Results</h2>
+<hr />
+
+<div>
+    <div>
+        @if (Model.mediaAudios != null)
+        {
+            <ul>
+                @foreach (var item in Model.mediaAudios)
+                {
+                    <li><audio src="@Url.Content(item.videofilename)" controls></audio></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No Audios found for the term you entered</p>
+        }
+    </div>
+
+    <div>
+        @if (Model.mediaPhotos != null)
+        {
+            <ul>
+                @foreach (var item in Model.mediaPhotos)
+                {
+                    <li><img src="@Url.Content(item.filename)" class="img-responsive" /></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No Photos found for the term you entered</p>
+        }
+    </div>
+
+    <div>
+        @if (Model.mediaVideos != null)
+        {
+            <ul>
+                @foreach (var item in Model.mediaVideos)
+                {
+                    <li><video src="@Url.Content(item.videofilename)" controls></video></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No Videos found for the term you entered</p>
+        }
+    </div>
+
+
+</div>

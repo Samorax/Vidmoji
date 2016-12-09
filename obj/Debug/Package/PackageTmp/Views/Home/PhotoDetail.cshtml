@@ -1,0 +1,79 @@
+﻿@model WebApplication1.Models.MediaModels.photo
+@{
+    ViewBag.Title = Model.tags +" - Video Starter Kit";
+}
+
+<div class="row">
+    <div class="col-md-offset-2">
+        <img src="@Model.filename" class="img-responsive"/> 
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel-default col-md-6">
+        <div class="panel-heading">
+            <div class="nav nav-pills">
+                <ul>
+                    <li class="nav-item">
+                        <i class="fa fa-thumbs-up" aria-hidden="true" id="imageThumbsUp" title="like">
+                            @Ajax.ActionLink("Like", "ImagethumbsUp", new { id = Model.imageid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "imagelikesCount" })
+                        </i>
+                        <span id="imagelikesCount">0</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fa fa-thumbs-down" aria-hidden="true" id="imageThumbsDown" title="dislike" dat-like="false" data-videoid="@Model.imageid">
+                            @Ajax.ActionLink("Dislike", "ImagethumbsDown", new { id = Model.imageid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "imagedislikesCount" })
+                        </i><span id="imagedislikesCount">0</span>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" id="imageDescriptionHandler">Description</a></li>
+                    <li class="nav-item"><a class="nav-link" id="imageLyricsHandler">Lyrics</a></li>
+                    <li class="nav-item">@Ajax.ActionLink("Add to Favorite", "AddImageToFavorites", new { id = Model.imageid }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "favoritesFeedback" })</li>
+                </ul>
+            </div>
+        </div>
+        <div id="favoritesFeedback"></div>
+        <h3>@Model.tags</h3>
+        <p>@Model.views Views</p>
+        <p>Uploaded on  @Model.added_date.Value.ToString("MMMM") @Model.added_date.Value.Day, @Model.added_date.Value.Year</p>
+        <div id="videoDescriptionContent" style="visibility:hidden">
+            <article>
+                <h6>Description</h6>
+                <hr />
+                <p>@Model.description</p>
+            </article>
+
+        </div>
+        <div id="videoLyrics" style="visibility:hidden">
+            <article>
+                <h6>Lyrics</h6>
+                <hr />
+            </article>
+        </div>
+
+    </div>
+    <div class="panel-default col-md-5">
+        <div class="panel-heading">
+            <div class="panel-title"><p>My Tags: You must @Html.ActionLink("Log in", "Login", "Account") in order to see your tags</p></div>
+        </div>
+        <div>
+            <div>Other Tags:</div>
+            <div></div>
+        </div>
+        @using (Ajax.BeginForm("AddImagetags", new { id = Model.imageid }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "imageTagFeedback" }, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="text" placeholder="Add Tag" name="Tag" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Add Tag" class="btn btn-primary btn-default" />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+<script src="~/Scripts/Client/PhotoDetail.js"></script>
+    }

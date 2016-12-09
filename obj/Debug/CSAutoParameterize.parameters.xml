@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Vidmojidb-Web.config Connection String" description="Vidmojidb Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Vidmojidb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Vidmojidb']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.DAL.MediaContext-Web.config Connection String" description="WebApplication1.DAL.MediaContext Connection String used in web.config by the application to access the database." defaultValue="WebApplication1.DAL.MediaContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.DAL.MediaContext']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.DAL.UserRelatedDbContext-Web.config Connection String" description="WebApplication1.DAL.UserRelatedDbContext Connection String used in web.config by the application to access the database." defaultValue="WebApplication1.DAL.UserRelatedDbContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.DAL.UserRelatedDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.Model2-Web.config Connection String" description="WebApplication1.Model2 Connection String used in web.config by the application to access the database." defaultValue="WebApplication1.Model2_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.Model2']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.Models.Model1-Web.config Connection String" description="WebApplication1.Models.Model1 Connection String used in web.config by the application to access the database." defaultValue="WebApplication1.Models.Model1_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.Models.Model1']/@connectionString" />
+  </parameter>
+  <parameter name="WebApplication1.DAL.MediaContext_DatabasePublish-Web.config Connection String" description="WebApplication1.DAL.MediaContext_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="WebApplication1.DAL.MediaContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebApplication1.DAL.MediaContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

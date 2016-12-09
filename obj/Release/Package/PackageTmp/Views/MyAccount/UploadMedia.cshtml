@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Upload Media - Video Starter Kit";
+}
+
+
+    <div class="tab-content container account-wrapper">
+
+        <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+            <div class="row">
+                <div class="col-md-3">
+                    
+                        <div id="MC_vd_nav1_nav" class="list-group">
+                            <a class="list-group-item condensed active" href="/videos/uploadoptions.aspx">Upload Videos</a>
+                            <a class="list-group-item condensed" href="/myaccount/myvideos.aspx">My Videos</a>
+                            <a class="list-group-item condensed" href="/myaccount/albums/">My Albums</a>
+                            <a class="list-group-item condensed" href="/myaccount/my_liked_videos.aspx">My Liked Videos</a>
+                            <a class="list-group-item condensed" href="/myaccount/myfavorites.aspx">My Favorited Videos</a>
+                            <a class="list-group-item condensed" href="/myaccount/albums/like.aspx">My Liked Videos</a>
+                        </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="MC_uoptions1_msg"></div>
+                    <div class="module ui-corner-all">
+                        <div class="col-lg-12">
+                            <div role="form">
+                                <h2 id="MC_uoptions1_status">Upload Videos</h2>
+                                <hr class="colorgraph">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input id="MC_uoptions1_r_noalbum" type="radio" name="ctl00$MC$uoptions1$album" value="r_noalbum" checked="checked">
+                                                        No Album
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="MC_uoptions1_drp_album">Select Album:</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div ="form-inline">
+                                                <div class="form-group">
+                                                    <label class="radio-inline">
+                                                        <input id="MC_uoptions1_r_album" type="radio" name="ctl00$MC$uoptions1$album" value="r_album">
+                                                        <select name="ctl00$MC$uoptions1$drp_album" id="MC_uoptions1_drp_album" class="form-control">
+                                                            <option value="">Select Album</option>
+
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <hr class="colorgraph">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+
+                                    <input type="submit" name="ctl00$MC$uoptions1$btn_uphotos" value="Upload Videos" id="MC_uoptions1_btn_uphotos" class="btn btn-primary btn-block btn-lg">
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a href="/videos/create.aspx" id="MC_uoptions1_calbum" class="btn btn-info btn-block btn-lg">Create Album</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
