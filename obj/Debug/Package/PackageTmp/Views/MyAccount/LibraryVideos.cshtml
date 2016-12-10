@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Library My Albums - VIdeo Starter Kit";
+    ViewBag.Title = "Library My Videos -Video Starter kit";
 }
 
 
@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-md-3">
             <div id="MC_vd_nav1_nav" class="list-group">
-                @Html.ActionLink("My Albums","MyAlbums", new { @class = "list-group-item condensed active" }))
-                @Html.ActionLink("My Videos", "LibraryVideos", new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Albums", "MyAlbums", new { @class = "list-group-item condensed" }))
+                @Html.ActionLink("My Videos", "LibraryVideos", new { @class = "list-group-item condensed active" })
                 @Html.ActionLink("My Audios", "LibraryAudios", new { @class = "list-group-item condensed" })
                 @Html.Action("My Photos", "LibraryPhotos", new { @class = "list-group-item condensed" })
             </div>
@@ -34,14 +34,14 @@
             </div>
             <hr class="colorgraph">
             <div class="col-xs-12 col-md-6">
-                <a href="/videos/create.aspx" id="MC_myvideos_v11_cAlbum" class="btn btn-info btn-sm" title="Upload New Video">Create Album</a>
-                <a href="/videos/uploadoptions.aspx" id="MC_myvideos_v11_uVideos" class="btn btn-success btn-sm" title="Upload New Video">Upload Video</a>
+               @Html.ActionLink("Create Album", "CreateVideoAlbum", null, new { title = "Upload New Video Album", @class = "btn btn-info btn-sm", id = "MC_myvideos_v11_cAlbum" })
+            @Html.ActionLink("Upload Video", "UploadMedia", null, new { title = "Upload New Video", @class = "btn btn-success btn-sm", id = id = "MC_myvideos_v11_uVideos" })
             </div>
             <div class="col-xs-12 col-md-6">
                 <div id="MC_myvideos_v11_norecord" class="jumbotron marginfixed item_c">
-                    @if (ViewBag.NoAlbums != null)
+                    @if (ViewBag.NoVideos != null)
                     {
-                        <h3 id="MC_myvideos_v11_norec">@ViewBag.NoAlbums</h3>
+                        <h3 id="MC_myvideos_v11_norec">@ViewBag.NoVideos</h3>
                     }
 
                 </div>
@@ -49,3 +49,5 @@
         </div>
     </div>
 </div>
+
+

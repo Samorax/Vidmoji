@@ -1,7 +1,129 @@
-﻿
+﻿@using WebApplication1.Models
+@model DeviceSettingsViewModel
 @{
     ViewBag.Title = "Settings - Video Starter Kit";
 }
 
-<h2>Settings</h2>
+<div class="container">
+    @using (Html.BeginForm("Settings", "MyAccount", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="tab-content account-wrapper">
+            <div class="tab-pane setting-inner-wrap active">
+                <div id="MC_instaWrapper" class="box instagram-wrapper">
+                    <div class="row">
+                        <div class="tab-title clearfix">
+                            <div class="col-sm-12">
+                                <label class="form-control-label">Instagram</label>
+                                <p>You can build your Vidmoji collection by liking your favourite clips posted by @@Vidmoji</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            <div class="col-sm-12">
+                                <div id="instafeed"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="submit" name="ctl00$MC$btnAuthenticate" value="Authenticate Instagram" id="MC_btnAuthenticate" class="btn btn-info">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            <span id="MC_instaLbl2" class="col-sm-8 control-label instagram-text">
+                                Any time you like a vidmoji instagram
+                                clip,automatically add to my library
+                            </span>
+                            <div class="col-sm-4">
+                                <div class="radio-btn-wrapper pull-left">
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_clip", new { value = "Yes", @checked = "checked", disabled = "disabled" })<i></i><b>Yes</b>
+                                    </div>
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_clip", new { value = "No", disabled = "disabled" })<i></i><b>No</b>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="row">
+                        <div class="tab-title clearfix">
+                            <div class="col-sm-12">
+                                <label class="control-label">
+                                    Device Settings
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            @Html.LabelFor(m => m.WifiOnlyDownload, new { @class = "control-label col-sm-8" })
+                            <div class="col-sm-4">
+                                <div class="radio-btn-wrapper pull-left">
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_wifi_download", new { value = "Yes", @checked = "true" })
+                                        <i></i>
+                                        <b>Yes</b>
+                                    </div>
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_wifi_download", new { value = "No" })
+                                        <i></i>
+                                        <b>No</b>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            @Html.LabelFor(m => m.UploadWifiOnly, new { @class = "control-label col-sm-8" })
+                            <div class="col-sm-4">
+                                <div class="radio-btn-wrapper pull-left">
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_wifi_upload", new { value = "Yes", @checked = "true" })
+                                        <i></i>
+                                        <b>Yes</b>
+                                    </div>
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_wifi_upload", new { value = "No" })
+                                        <i></i>
+                                        <b>No</b>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            @Html.LabelFor(m => m.SuggestWifiOnly, new { @class = "control-label col-sm-8" })
+                            <div class="col-sm-4">
+                                <div class="radio-btn-wrapper pull-left">
+                                    <div class="radio i-checks">
+                                        @Html.RadioButton("Vidmoji_wifi_suggest", new { value = "Yes", @checked = "true" })
+                                        <i></i>
+                                        <b>Yes</b>
+                                    </div>
+                                    
+                                        <div class="radio i-checks">
+                                            @Html.RadioButton("Vidmoji_wifi_suggest", new { value = "No" })
+                                            <i></i>
+                                            <b>No</b>
+                                        </div>
+                                    
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

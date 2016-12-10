@@ -4,20 +4,6 @@
 }
 
 <div class="row">
-    <div class="page-content">
-        <div class="container-nav">
-            <div id="MC_left_nav1_nav" class="container">
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active">@Html.ActionLink("Overview", "Index")</li>
-                    <li class="">@Html.ActionLink("Profile SetUp", "ProfileSetup")</li>
-                    <li class="">@Html.ActionLink("Email Options", "EmailOptions")</li>
-                    <li class="">@Html.ActionLink("Manage", "ManageAccount")</li>
-                    <li class="">@Html.ActionLink("Settings", "Settings")</li>
-                    <li class="">@Html.ActionLink("Library", "Library")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="tab-content container account-wrapper">
         <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
             <div class="profile-box">
@@ -64,7 +50,7 @@
 
                         <div id="MC_ovr_first" style="line-height: 16px;">
                                 <p class="name">@Model.UserName</p>
-                                <p class="gender">@Model.gender</p>
+                                <p class="gender">@Model.gender, @Model.relationshipstatus</p>
                                 <p class="country">@Model.countryname</p>
                                 <p class="channel">Channel Views: <span>@Model.views</span></p>
                         </div>
@@ -81,12 +67,12 @@
                     </div>
                     <div class="gallery-list">
                         <ul>
-                            <li>@Html.ActionLink("Upload Videos", "UploadOptions")</li>
+                            <li>@Html.ActionLink("Upload Videos", "UploadMedia")</li>
                             <li>@Html.ActionLink("My Videos", "MyVideos")</li>
-                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Albums", "MyVideoAlbums")</li>
                             <li>@Html.ActionLink("My Liked Videos", "MyLikedVideos")</li>
-                            <li>@Html.ActionLink("My Favorited Videos", "MyFavoritedVideos")</li>
-                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                            <li>@Html.ActionLink("My Favorited Videos", "FavVideos")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedVideoAlbums")</li>
                         </ul>
                     </div>
                 </div>
@@ -98,12 +84,12 @@
                     </div>
                     <div class="gallery-list">
                         <ul>
-                            <li>@Html.ActionLink("Upload Photos", "UploadOptions")</li>
+                            <li>@Html.ActionLink("Upload Photos", "UploadMedia")</li>
                             <li>@Html.ActionLink("My Photos", "MyPhotos")</li>
-                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Albums", "MyPhotoAlbums")</li>
                             <li>@Html.ActionLink("My Liked Photos", "MyLikedPhotos")</li>
-                            <li>@Html.ActionLink("My Favorited Photos", "MyFavoritedPhotos")</li>
-                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                            <li>@Html.ActionLink("My Favorited Photos", "FavPhotos")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAudioAlbums")</li>
                         </ul>
                     </div>
                 </div>
@@ -115,12 +101,12 @@
                     </div>
                     <div class="gallery-list">
                         <ul>
-                            <li>@Html.ActionLink("Upload Audios", "UploadOptions")</li>
+                            <li>@Html.ActionLink("Upload Audios", "UploadMedia")</li>
                             <li>@Html.ActionLink("My Audios", "MyAudios")</li>
-                            <li>@Html.ActionLink("My Albums", "MyAlbums")</li>
+                            <li>@Html.ActionLink("My Albums", "MyAudioAlbums")</li>
                             <li>@Html.ActionLink("My Liked Audios", "MyLikedAudios")</li>
-                            <li>@Html.ActionLink("My Favorited Audios", "MyFavoritedAudios")</li>
-                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAlbums")</li>
+                            <li>@Html.ActionLink("My Favorited Audios", "FavAudios")</li>
+                            <li>@Html.ActionLink("My Liked Albums", "MyLikedAudioAlbums")</li>
                         </ul>
                     </div>
                 </div>

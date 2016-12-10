@@ -1,3 +1,14 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"];
+
+    if (controller.Equals("Home")|| controller.Equals("Account"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (controller.Equals("MyAccount"))
+    {
+        Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+    }
+
+
 }
