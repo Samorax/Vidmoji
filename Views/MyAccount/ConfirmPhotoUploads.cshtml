@@ -1,0 +1,108 @@
+﻿@model WebApplication1.Models.MediaConfirmViewModel
+@{
+    ViewBag.Title = "Confirm Photo - Video Starter Kit";
+}
+
+<div class="tab-content container account-wrapper">
+    <div id="My-Account" class="tab-pane active">
+        <div class="col-md-3">
+            <div id="MC_vd_nav1_nav" class="list-group">
+                @Html.ActionLink("Upload Photos", "UploadPhotos", null, new { @class = "list-group-item condensed active" })
+                @Html.ActionLink("My Photos", "MyPhotos", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                @Html.ActionLink("My Liked Photos", "MyPhotos", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div>@ViewBag.UploadMessage</div>
+            <div id="MC_confirm1_main">
+                <hr class="colorgraph">
+                <div class="item_pad_4">
+                    <table id="MC_confirm1_MyList" cellspacing="0" style="width:100%;border-collapse:collapse;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+                                            <div class="item_pad_2">
+                                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter title" })
+                                                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                                            </div>
+                                            <div class="item_pad_2">
+                                                @Html.TextBoxFor(m => m.Description, new { rows = "2", cols = "20", @class = "form-control", placeholder = "Enter description", style = "height:60px;" })
+
+                                            </div>
+                                            <div class="item_pad_2">
+                                                @Html.TextBoxFor(m => m.Tags, new { @class = "form-control", placeholder = "Enter tags separated by comma (,)" })
+
+                                            </div>
+
+                                            <div id="MC_confirm1_MyList_mcat_0">
+                                                <div class="item_pad_2">
+                                                    <div class="field_item_left">
+                                                        Select Categories:
+                                                    </div>
+                                                    <div class="field_item_right">
+                                                        @Html.EnumDropDownListFor(m => m.Category, new { multiple = "multiple", @class = "form-control", style = "height:100px;width:150px;" })
+                                                        @Html.ValidationMessageFor(m=>m.Category,null,new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="clear">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                                            <div class="item_pad_2">
+
+
+
+
+                                                <div id="MC_confirm1_MyList_macc_itm1_0_itm_0">
+                                                    <div class="item item-photo">
+                                                        <div class="thumb">
+                                                            <a class="clip-link" href="/photo/@ViewBag.PhotoId" title="">
+                                                                <span class="clip">
+                                                                    <img src="@ViewBag.PhotoFilename" alt="">
+                                                                    <span class="vertical-align"></span>
+                                                                </span><span class="overlay"></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="photo-detail">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item_pad_2">
+                                                <span class="aspNetDisabled">
+                                                   @Html.RadioButtonFor(m=>m.AlbumCover,new { value = "true" },new { disabled = "disabled" })
+                                                </span>
+                                                Mark as album cover
+                                            </div>
+                                            <div class="item_pad_2">
+                                                @Html.CheckBoxFor(m=>m.Delete)
+                                                Delete Photo
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="colorgraph">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <input type="submit" name="ctl00$MC$confirm1$btn_bupdate" value="Update" id="MC_confirm1_btn_bupdate" class="btn btn-primary btn-block btn-lg">
+
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+

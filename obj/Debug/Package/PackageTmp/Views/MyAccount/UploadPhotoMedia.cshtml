@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Upload Photo - Video Starter Kit";
+}
+
+
+<div class="tab-content container account-wrapper">
+
+    <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div id="MC_vd_nav1_nav" class="list-group">
+                    @Html.ActionLink("Upload Photos", "UploadPhotos", null, new { @class = "list-group-item condensed active" })
+                    @Html.ActionLink("My Videos", "MyVideos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                    @Html.ActionLink("My Liked Photos", "MyLikedPhotos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="container" style="position: relative;">
+                    <div id="MC_uploader1_msg">
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="MC_uploader1_cmt" class="panel-title">Upload Photo</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pd_10 item_c">
+                                <div id="testinfo"></div>
+                                <div id="filelist">
+                                </div>
+                            </div>
+                            <div class="pd_10 item_c">
+                                <a href="javascript:;" id="pickfiles" class="btn btn-primary btn-lg" style="position: relative; z-index: 0;">
+                                    Select Photos
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <div class="panel-footer"><a class="btn btn-primary btn-lg disabled" id="uploadfiles" href="#">Upload Files</a></div>
+                    </div>
+                    <div id="tfiles" style="display: none;">
+                        1
+                    </div>
+                    <div id="maxpid" style="display: none;">
+                        0
+                    </div>
+                    <div id="p1b3l6a3n31trav43ge1rq51aru0_html5_container" style="position: absolute; background: transparent none repeat scroll 0% 0%; width: 151px; height: 46px; overflow: hidden; z-index: -1; opacity: 0; top: 55px; left: 16px;" class="plupload html5"><input id="p1b3l6a3n31trav43ge1rq51aru0_html5" style="font-size: 999px; position: absolute; width: 100%; height: 100%;" accept="video/mp4,video/x-ms-wmv,video/mpeg,video/x-flv,video/avi,video/quicktime,video/x-m4v" multiple="multiple" type="file"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var uploader = new plupload.Uploader({
+            runtimes: 'gears,html5,flash,silverlight,browserplus',
+            browse_button: 'pickfiles',
+            container: 'container',
+            max_file_size: '11mb',
+            url: '/plupload/upload.ashx',
+            flash_swf_url: '/plupload/js/plupload.flash.swf',
+            silverlight_xap_url: '/plupload/js/plupload.silverlight.xap',
+            filters: [{ title: "Image files", extensions: "jpg,gif,png" }],
+            headers: { UName: 'samorax', UGID: '0', Prc: '0', PAuth: '', Cats: '', Tags: '' }
+        });
+
+        uploader.bind('Init', function (up, params) {
+            //            $('#filelist').html("&lt;div&gt;Current runtime: " + params.runtime + "&lt;/div&gt;");
+        });
+
+        $('#uploadfiles').click(function (e) {
+            uploader.start();
+            e.preventDefault();
+        });
+
+        uploader.init();
+
+        uploader.bind('FilesAdded', function (up, files) {
+            var count = 0;
+            $.each(files, function (i, file) {
+                $('#filelist').append(
+				'&lt;div id="' + file.id + '" class="bx_br_bt item_pad_4 xmedium-text"&gt;' +
+				file.name + ' (' + plupload.formatSize(file.size) + ') &lt;b&gt;&lt;/b&gt;' +
+			'&lt;/div&gt;');
+                count++;
+            });
+            $("#tfiles").html(count);
+            $("#uploadfiles").removeClass("disabled");
+            $("#pickfiles").hide();
+            up.refresh(); // Reposition Flash/Silverlight
+        });
+
+        uploader.bind('UploadProgress', function (up, file) {
+            $('#' + file.id + " b").html(file.percent + "%");
+        });
+
+        uploader.bind('Error', function (up, err) {
+            $('#filelist').append("&lt;div&gt;Error: " + err.code +
+			", Message: " + err.message +
+			(err.file ? ", File: " + err.file.name : "") +
+			"&lt;/div&gt;"
+		);
+            up.refresh(); // Reposition Flash/Silverlight
+        });
+        var filesuploaded = 0;
+        uploader.bind('FileUploaded', function (up, file) {
+            filesuploaded++;
+            var tfiles = $("#tfiles").html();
+            if (filesuploaded != tfiles) {
+                document.location = "confirm.aspx?gid=0&amp;upics=" + $("#tfiles").html() + "&amp;mpid=" + $("#maxpid").html().trim() + "";
+        }
+        });
+    });
+
+</script>
+@section Scripts{
+    <script src="~/Scripts/plupload.full.js"></script>
+}

@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="DAL\MediaContext.cs" />
+    <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,8 +212,13 @@
     <Compile Include="Migrations\MediaContext\201612091635197_AddedTables.Designer.cs">
       <DependentUpon>201612091635197_AddedTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MediaContext\201612101609565_AzureDbSetup.cs" />
+    <Compile Include="Migrations\MediaContext\201612101609565_AzureDbSetup.Designer.cs">
+      <DependentUpon>201612101609565_AzureDbSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MediaContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdvancedSearchViewModel.cs" />
     <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\DeviceSettingsViewModel.cs" />
     <Compile Include="Models\driveUploadsValues.cs" />
@@ -223,12 +229,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MediaCollection.cs" />
+    <Compile Include="Models\MediaConfirmViewModel.cs" />
     <Compile Include="Models\MediaModels.cs" />
     <Compile Include="Models\MediaRelatedItems.cs" />
     <Compile Include="Models\MyProfileSetupViewModel.cs" />
     <Compile Include="Models\UserRelatedModel.cs" />
     <Compile Include="Models\user_subscribers.cs" />
     <Compile Include="Models\user_video_history.cs" />
+    <Compile Include="Models\VideoCategoryViewModel.cs" />
     <Compile Include="playlist_videos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -365,6 +373,7 @@
     <Content Include="Images\icon-play-32.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Member\p1abl3gnjqcrnmr3c5n131fjst3_001.jpg" />
+    <Content Include="Images\ripple.gif" />
     <Content Include="Images\slider-left-arrow.png" />
     <Content Include="Images\slider-right-arrow.png" />
     <Content Include="Images\speaker-icon.png" />
@@ -503,6 +512,7 @@
     <Content Include="Scripts\Client\mediaRelateditem.js" />
     <Content Include="Scripts\Client\PhotoDetail.js" />
     <Content Include="Scripts\Client\QuickSearch.js" />
+    <Content Include="Scripts\Client\Upload.js" />
     <Content Include="Scripts\Client\VideoDetail.js" />
     <Content Include="Scripts\Client\vsk.js" />
     <Content Include="Scripts\custom.js" />
@@ -523,6 +533,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\mustache.js" />
     <Content Include="Scripts\owl.carousel.js" />
+    <Content Include="Scripts\plupload.flash.swf" />
+    <Content Include="Scripts\plupload.full.js" />
+    <Content Include="Scripts\plupload.silverlight.xap" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -602,7 +615,7 @@
     <Content Include="Views\Home\_VideothumbsUp.cshtml" />
     <Content Include="Views\Home\_FavoritesUpdated.cshtml" />
     <Content Include="Views\Home\_UserLoginNotification.cshtml" />
-    <Content Include="Views\MyAccount\UploadMedia.cshtml" />
+    <Content Include="Views\MyAccount\UploadVideoMedia.cshtml" />
     <Content Include="Views\MyAccount\MyVideos.cshtml" />
     <Content Include="Views\MyAccount\CreateVideoAlbum.cshtml" />
     <Content Include="Views\MyAccount\MyVideoAlbums.cshtml" />
@@ -615,6 +628,26 @@
     <Content Include="Views\MyAccount\LibraryVideos.cshtml" />
     <Content Include="Views\MyAccount\LibraryAudios.cshtml" />
     <Content Include="Views\MyAccount\LibraryPhotos.cshtml" />
+    <Content Include="Views\MyAccount\MyAudios.cshtml" />
+    <Content Include="Views\MyAccount\MyPhotos.cshtml" />
+    <Content Include="Views\MyAccount\UploadVideos.cshtml" />
+    <Content Include="Views\MyAccount\UploadAudio.cshtml" />
+    <Content Include="Views\MyAccount\UploadPhotos.cshtml" />
+    <Content Include="Views\MyAccount\UploadPhotoMedia.cshtml" />
+    <Content Include="Views\MyAccount\UploadAudioMedia.cshtml" />
+    <Content Include="Views\MyAccount\CreatePhotoAlbum.cshtml" />
+    <Content Include="Views\Home\AdvSearch.cshtml" />
+    <Content Include="Views\Home\_recentlyAddedVideos.cshtml" />
+    <Content Include="Views\Home\_distinctVideoCategory.cshtml" />
+    <Content Include="Views\Home\VideoWithCategory.cshtml" />
+    <Content Include="Views\Home\VideosWithCategories.cshtml" />
+    <Content Include="Views\Home\_asideVideoTags.cshtml" />
+    <Content Include="Views\Home\_rVids.cshtml" />
+    <Content Include="Views\Home\_mViewed.cshtml" />
+    <Content Include="Views\Home\_tVids.cshtml" />
+    <Content Include="Views\Home\_mCommented.cshtml" />
+    <Content Include="Views\MyAccount\_videoUploadResult.cshtml" />
+    <Content Include="Views\MyAccount\ConfirmPhotoUploads.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -642,6 +675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MediaContext\201612091635197_AddedTables.resx">
       <DependentUpon>201612091635197_AddedTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MediaContext\201612101609565_AzureDbSetup.resx">
+      <DependentUpon>201612101609565_AzureDbSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

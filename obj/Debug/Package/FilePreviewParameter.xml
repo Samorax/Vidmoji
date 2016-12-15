@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:byy2cseq1w.database.windows.net,1433;Initial Catalog=Vidmojidb;User Id=VidmojiApp@byy2cseq1w;Password=Trans4mation?!" tags="">
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="connectionString=&quot;Data Source=188.121.44.217;Initial Catalog=Vidmoji_Staging2;User ID=vidmoji;Password=Vidmoji2016*;MultipleActiveResultSets=True;App=EntityFramework&quot; providerName=&quot;System.Data.SqlClient&quot;" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\samuel\\workspace\\WebApplication1\\WebApplication1\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
 </parameters>

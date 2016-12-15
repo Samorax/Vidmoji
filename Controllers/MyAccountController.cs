@@ -10,6 +10,7 @@ using WebApplication1.DAL;
 using System.IO;
 using static WebApplication1.Models.MediaModels;
 using System.Threading.Tasks;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -20,6 +21,9 @@ namespace WebApplication1.Controllers
         private MediaContext Media;
         private List<video> audios;
         private ApplicationUserManager UserManager;
+        private List<string> VideoUploadsExt = new List<string> {"mp4","wmv","mpeg","mpg","flv","avi","rm","mov","m4v","dv","ogg","ogv","web"};
+        private List<string> AudioUploadsExt = new List<string> { "mp3","wma","mp4","wmv","mpeg","mpg","flv","avi","rm","mov","mp4v","dv","ogg","ogv","webm" };
+        private List<string> PhotoUploadsExt = new List<string> { "jpg","gif","png" };
         
 
         // GET: MyAccount
@@ -46,50 +50,121 @@ namespace WebApplication1.Controllers
            return View(currentUser);
         }
 
-//=========================================================================Video Section ======================================================================================//
+        //=========================================================================Video Section ======================================================================================//
+        [Route("MyAccount/UploadVideos")]
+        public ActionResult UploadVideos()
+        {
+            var currentuser = User.Identity.GetUserName();
+            var userVideoAlbums = Media.Albums.Where(a => a.UserName.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && a.type == 1);
+            if (userVideoAlbums != null)
+                return View(userVideoAlbums);
+            else
+                ViewBag.NoVideoAlbums = "<options value=''></options";
+            return View();
+        }
+
         [Route("MyAccount/VideoUploads")]
-        public ActionResult UploadMedia()
+        public ActionResult UploadVideoMedia()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("MyAccount/VideoUploads")]
-        public ActionResult UploadedMedia(HttpPostedFileBase file)
+        [AjaxOnly]
+        [Route("MyAccount/VideoUploads/{file}")]
+        public async Task<ActionResult> UploadedVideo(HttpPostedFileBase file)
         {
             try
             {
-                if(file.ContentLength > 0 && file.ContentType.Equals("audio"))
+                if (file.ContentLength < 100 * 1000000)
                 {
-                    var _fileName = file.FileName;
-                    var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedAudios"), _fileName);
-                    file.SaveAs(_fileStoragePath);
-                    ViewBag.UploadMessage = "Audio File Successfully Uploaded";
+                    foreach (var ext in VideoUploadsExt)
+                    {
+                        if (file.ContentType.Contains(ext))
+                        {
+                            var _fileName = file.FileName;
+                            var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedVideos"), _fileName);
+                            var newVideo = Media.videos.Add(new video { type = 0, videofilename = _fileStoragePath, username = User.Identity.GetUserName(),date_added=DateTime.Now });
+                            await Media.SaveChangesAsync();
+                            file.SaveAs(_fileStoragePath);
+                            ViewBag.UploadMessage = "Video File Successfully Uploaded";
+                            RedirectToAction(nameof(ConfirmVideoUploads), new { id = newVideo.videoid, confirmation = ViewBag.UploadMessage });
+                        }
+                        else
+                            ViewBag.UploadMessage = "Your file type is not supported"; continue;
+                    }
+
                 }
-                else if(file.ContentLength >0 && file.ContentType.Equals("video"))
-                {
-                    var _fileName = file.FileName;
-                    var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedVideos"), _fileName);
-                    file.SaveAs(_fileStoragePath);
-                    ViewBag.UploadMessage = "Video File Successfully Uploaded";
-                }
-                else if(file.ContentLength >0 && file.ContentType.Equals("photo"))
-                {
-                    var _fileName = file.FileName;
-                    var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedPhotos"), _fileName);
-                    file.SaveAs(_fileStoragePath);
-                    ViewBag.UploadMessage = "Photo File Successfully Uploaded";
-                }
+                else
+                    ViewBag.UploadMessage = "Your file is greater than the Maximum Size (100mb) allowed";
             }
             catch (Exception)
             {
                 ViewBag.UploadMessage = "File Upload Failed. Try Again.";
-                
+            }    
+            
+            return PartialView("_videoUploadResult");
+        }
+
+        [Route("MyAccount/Videos/VideoUploads/Confirm/{confirmation}/{id:int}")]
+        public ActionResult ConfirmVideoUploads(string confirmation,int id)
+        {
+            var videoToConfirm = Media.videos.FirstOrDefault(p => p.videoid == id);
+            if (videoToConfirm != null)
+            {
+                ViewBag.PhotoId = videoToConfirm.videoid;
+                ViewBag.PhotoFilename = videoToConfirm.videofilename;
+                ViewBag.UploadMessage = confirmation;
             }
+            else
+                ViewBag.ConfirmMessage = "The File You want to confrim does not exist";
+
+
+            return View();
+          
+        }
+
+        [HttpPost]
+        [Route("MyAccount/Videos/VideoUploads/Confirm/{id:int}")]
+        public async Task<ActionResult> ConfirmVideoUploads(MediaConfirmViewModel confirmUpload, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var video = Media.videos.FirstOrDefault(v => v.videoid == id);
+                if (confirmUpload.Delete)
+                {
+                    Media.videos.Remove(video);
+                    await Media.SaveChangesAsync();
+                    ViewBag.ConfirmMessage = "Success: Video deleted";
+                    RedirectToAction(nameof(MyVideos), new { confirmation = ViewBag.ConfirmMessage });
+                }
+
+                video.title = confirmUpload.Title;
+                video.description = confirmUpload.Description;
+                video.tags = confirmUpload.Tags;
+                video.categories = confirmUpload.Category.ToString();
+                Media.Entry(video).State = EntityState.Modified;
+                Media.SaveChanges();
+                ViewBag.ConfirmMessage = "Success: Video Successfully Updated";
+                RedirectToAction(nameof(MyVideos), new { confirmation = ViewBag.ConfirmMessage });
+            }
+
+            return View(confirmUpload);
+            
+        }
+
+        [Route("MyAccount/MyVideos")]
+        public ActionResult MyVideos()
+        {
+            var currentuser = User.Identity.GetUserName();
+            var currentuserVideos = Media.videos.Where(v => v.username.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && v.type == 0).ToList();
+            if(currentuserVideos != null)
+                return View(currentuserVideos);
+            else
+                ViewBag.NoVideos = "You have not uploaded any Videos";
             return View();
         }
 
-        
         [Route("MyAccount/Video/CreateAlbum")]
         public ActionResult CreateVideoAlbum()
         {
@@ -103,7 +178,6 @@ namespace WebApplication1.Controllers
             var currentUser = User.Identity.GetUserName();
             if (ModelState.IsValid)
             {
-              
                     Media.Albums.Add(new Galleries { UserName = currentUser, Categories = album.Categories,type=1, Title = album.Title, Description = album.Description, privacy = album.Privacy, Tags = album.Tags });
                     Media.SaveChanges();
                 
@@ -120,7 +194,8 @@ namespace WebApplication1.Controllers
                 var currentuserVideoAlbums = Media.Albums.Where(g => g.UserName.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && g.type == 1);
                 if (currentuserVideoAlbums != null)
                     return View(currentuserVideoAlbums);
-                ViewBag.NoVideosinAlbum = "No Video Albums Created Yet";
+                else
+                    ViewBag.NoVideosinAlbum = "No Video Albums Created Yet";
             
                 return View();
         }
@@ -132,7 +207,8 @@ namespace WebApplication1.Controllers
                 var specificVideoAlbum = Media.Albums.FirstOrDefault(g => g.GalleriesId == id);
                 if (specificVideoAlbum != null)
                     return View(specificVideoAlbum);
-                ViewBag.NotExist = "This Album does not exist.";
+                else
+                    ViewBag.NotExist = "This Album does not exist.";
             
                 return View();
         }
@@ -144,7 +220,8 @@ namespace WebApplication1.Controllers
             var currentuserLikedVideos = Media.user_ratings.Where(u => u.username.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && u.type == 1 && u.rating == 0);
             if (currentuserLikedVideos != null)
                 return View(currentuserLikedVideos);
-            ViewBag.NoLikedVideos = "You have no liked Videos.";
+            else
+                ViewBag.NoLikedVideos = "You have no liked Videos.";
             return View();
         }
 
@@ -155,7 +232,8 @@ namespace WebApplication1.Controllers
             var currentuserLikedAlbums = Media.user_ratings.Where(u => u.username.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && u.type == 1 && u.rating == 9);
             if (currentuserLikedAlbums != null)
                 return View(currentuserLikedAlbums);
-            ViewBag.NoLikedAblums = "You have no liked Albums";
+            else
+                ViewBag.NoLikedAblums = "You have no liked Albums";
             return View();
         }
 
@@ -166,11 +244,79 @@ namespace WebApplication1.Controllers
             var favVidoes = Media.favorites.Where(v => v.username.Equals(currentUser, StringComparison.OrdinalIgnoreCase) && v.type == 1).ToList();
             if (favVidoes != null)
                 return View(favVidoes);
-            ViewBag.NoFavVideos = "No Videos Favorited Yet.";
+            else
+                ViewBag.NoFavVideos = "No Videos Favorited Yet.";
             return View();
         }
         //=============================================================================================Audio Section ========================================================================//
-        
+
+        [Route("MyAccount/AudioUploads")]
+        public ActionResult UploadAudioMedia()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        [Route("MyAccount/AudioUploads")]
+        public ActionResult UploadedAudio(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength < 50 * 1000000)
+                {
+                    foreach (var ext in AudioUploadsExt)
+                    {
+                        if (file.ContentType.Contains(ext))
+                        {
+                            var _fileName = file.FileName;
+                            var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedAudios"), _fileName);
+                            var newVideo = Media.videos.Add(new video { type = 1, videofilename = _fileStoragePath, username = User.Identity.GetUserName(),date_added=DateTime.Now });
+                            Media.SaveChanges();
+                            file.SaveAs(_fileStoragePath);
+                            ViewBag.UploadMessage = "Audio File Successfully Uploaded";
+                            RedirectToAction("ConfirmAudio", new { UploadMessage = ViewBag.UploadMessage });
+                        }
+                        else
+                            ViewBag.UploadMessage = "Your file type is not supported"; continue;
+                    }
+
+                }
+                else
+                    ViewBag.UploadMessage = "Your file is greater than the Maximum Size (100mb) allowed";
+            }
+            catch (Exception)
+            {
+                ViewBag.UploadMessage = "File Upload Failed. Try Again.";
+            }
+
+            return PartialView("_videoUploadResult");
+        }
+
+        [Route("MyAccount/UploadAudios")]
+        public ActionResult UploadAudios()
+        {
+            var currentuser = User.Identity.GetUserName();
+            var userAudioAlbums = Media.Albums.Where(a => a.UserName.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && a.type == 2);
+            if (userAudioAlbums != null)
+                return View(userAudioAlbums);
+            else
+                ViewBag.NoVideoAlbums = "<options value=''></options";
+            return View();
+        }
+
+        [Route("MyAccount/MyAudios")]
+        public ActionResult MyAudios()
+        {
+            var currentuser = User.Identity.GetUserName();
+            var currentuserAudios = Media.videos.Where(v => v.type == 0 && v.username.Equals(currentuser, StringComparison.OrdinalIgnoreCase));
+            if (currentuserAudios != null)
+                return View(currentuserAudios);
+            else
+                ViewBag.NoAudios = "You have not uploaded any audios";
+            return View();
+        }
+
         [Route("MyAccount/Audio/CreateAlbum")]
         public ActionResult CreateAudioAlbum()
         {
@@ -187,8 +333,7 @@ namespace WebApplication1.Controllers
                 
                     Media.Albums.Add(new Galleries { UserName = currentUser, Categories = album.Categories, type = 2, Title = album.Title, Description = album.Description, privacy = album.Privacy, Tags = album.Tags });
                     Media.SaveChanges();
-                
-                ViewBag.CreatedAlbumMessage = "Album Successfully Created.";
+                    ViewBag.CreatedAlbumMessage = "Album Successfully Created.";
             }
             return View(album);
         }
@@ -252,7 +397,114 @@ namespace WebApplication1.Controllers
             return View();
         }
         //=============================================================================================Photo Section ========================================================================//
+        [Route("MyAccount/PhotoUploads")]
+        public ActionResult UploadPhotoMedia()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        [AjaxOnly]
+        [Route("MyAccount/PhotoUploads")]
+        public ActionResult UploadedPhoto(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength < 11 * 1000000)
+                {
+                    foreach (var ext in PhotoUploadsExt)
+                    {
+                        if (file.ContentType.Contains(ext))
+                        {
+                            var _fileName = file.FileName;
+                            var _fileStoragePath = Path.Combine(Server.MapPath("~/UploadedPhotos"), _fileName);
+                            var newVideo = Media.photos.Add(new photo { filename = _fileStoragePath, username = User.Identity.GetUserName(),added_date=DateTime.Now });
+                            Media.SaveChanges();
+                            file.SaveAs(_fileStoragePath);
+                            ViewBag.UploadMessage = "Photo File Successfully Uploaded";
+                            RedirectToAction(nameof(ConfirmPhotoUploads), new { id = newVideo.imageid });
+
+                        
+                        }
+                        else
+                            ViewBag.UploadMessage = "Your file type is not supported"; continue;
+                    }
+
+                }
+                else
+                    ViewBag.UploadMessage = "Your file is greater than the Maximum Size (100mb) allowed";
+            }
+            catch (Exception)
+            {
+                ViewBag.UploadMessage = "File Upload Failed. Try Again.";
+            }
+
+            return PartialView("_videoUploadResult");
+        }
+        [Route("MyAccount/UploadPhotos")]
+        public ActionResult UploadPhotos()
+        {
+            var currentuser = User.Identity.GetUserName();
+            var userPhotoAlbums = Media.Albums.Where(a => a.UserName.Equals(currentuser, StringComparison.OrdinalIgnoreCase) && a.type == 0);
+            if (userPhotoAlbums != null)
+                return View(userPhotoAlbums);
+            ViewBag.NoVideoAlbums = "<options value=''></options";
+            return View();
+        }
+
+        [Route("MyAccount/Photos/PhotoUploads/Confirm/{id:int}")]
+        public ActionResult ConfirmPhotoUploads(int id)
+        {
+            var photoToConfirm = Media.photos.FirstOrDefault(p => p.imageid == id);
+            if (photoToConfirm != null)
+            {
+                ViewBag.PhotoId = photoToConfirm.imageid;
+                ViewBag.PhotoFilename = photoToConfirm.filename;
+            }
+            else
+                ViewBag.ConfirmMessage = "The File You want to confrim does not exist";
+
+
+            return View();
+        }
+
+        [HttpPost]
+        [Route("MyAccount/Photos/PhotoUploads/Confirm/{id:int}")]
+        public ActionResult ConfirmPhotoUploads(MediaConfirmViewModel confirmMedia,int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var photoToConfirm = Media.photos.FirstOrDefault(p => p.imageid == id);
+                photoToConfirm.description = confirmMedia.Description;
+                photoToConfirm.tags = confirmMedia.Title;
+                photoToConfirm.categories = confirmMedia.Category.ToString();
+
+                Media.Entry(photoToConfirm).State = EntityState.Modified;
+                Media.SaveChanges();
+
+                ViewBag.ConfirmationMessage = "Success: Photo Files has been Updated";
+                RedirectToAction("MyPhoto", new { confirmation = ViewBag.ConfirmationMessage });
+            }
+
+            return View(confirmMedia);
+        }
+
+        [Route("MyAccount/MyPhotos/{confirmation}")]
+        public ActionResult MyPhotos(string confirmation)
+        {
+            var currentuser = User.Identity.GetUserName();
+            var currentuserphotos = Media.photos.Where(p => p.username.Equals(currentuser, StringComparison.OrdinalIgnoreCase));
+            if (currentuserphotos != null)
+            {
+                if(confirmation == null)
+                    ViewBag.ConfirmationMessage = "Success: Photo Files has been Updated";
+                return View(currentuserphotos);
+            }
+                
+            ViewBag.NoPhotos = "You have not uploaded any photos";
+            return View();
+
+        }
         [Route("MyAccount/Photo/CreateAlbum")]
         public ActionResult CreatePhotoAlbum()
         {

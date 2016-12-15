@@ -10,6 +10,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System;
 using static WebApplication1.Models.UserRelatedModel;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -301,11 +302,11 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            return View();
+            var media = IndexMediaCollection();
+            return View(media);
         }
 
-        [Route(nameof(IndexMediaCollection))]
-        public JsonResult IndexMediaCollection()
+        private static MediaCollection IndexMediaCollection()
         {
             //Get list of videos, audios and photos from database.
             videos = Media.videos.Where(v=>v.type==0).OrderByDescending(v => v.date_added).ToList();
@@ -317,27 +318,37 @@ namespace WebApplication1.Controllers
             indexPagePhotos = ReturnLatestEightMedia(photos);
             indexPageAudios = ReturnLatestEightMedia(audios);
 
-            mediaCollection = new MediaCollection { mediaVideos = indexPageVideos, mediaPhotos = indexPagePhotos, mediaAudios = indexPageAudios };
-            //Pass Collection to view.
-            return Json(mediaCollection, JsonRequestBehavior.AllowGet);
+            return mediaCollection = new MediaCollection { mediaVideos = indexPageVideos, mediaPhotos = indexPagePhotos, mediaAudios = indexPageAudios };
         }
 
-        [Route(nameof(QuickSearch))]
-        public ActionResult QuickSearch(string term)
-        {
-            var values = GetSearchRequests(term).mediaAudios.Select(a => new { value = a.username });
-            return Json(values, JsonRequestBehavior.AllowGet);
-        }
+        //[Route(nameof(QuickSearch))]
+        //public ActionResult QuickSearch(string term)
+        //{
+        //    var values = GetSearchRequests(term).mediaAudios.Select(a => new { value = a.username });
+        //    return Json(values, JsonRequestBehavior.AllowGet);
+        //}
 
-        [Route(nameof(Search))]
+        
+        [HttpPost]
+        [Route("Search/{searchTerm}")]
         public ActionResult Search(string searchTerm)
         {
-            GetSearchRequests(searchTerm);
-            return Json(mediaCollection, JsonRequestBehavior.AllowGet);
+            var media = GetSearchRequests(searchTerm);
+            return View(media);
         }
+
+        [Route("AdvanceSearch")]
+        public ActionResult AdvSearch()
+        {
+            return View();
+        }
+        
+        
 
         private static MediaCollection GetSearchRequests(string searchTerm)
         {
+            var searchTermLower = searchTerm.ToLower();
+
             List<video> audioSearchTags = null;
             List<video> videoSearchTags = null;
             List<photo> photoSearchTags = null;
@@ -347,9 +358,9 @@ namespace WebApplication1.Controllers
             audios = Media.videos.Where(v => v.type == 1).OrderByDescending(v => v.date_added).ToList();
             photos = Media.photos.OrderByDescending(v => v.added_date).ToList();
             
-            audioSearchTags = audios.FindAll(a => a.tags.Contains(searchTerm) || a.username.Contains(searchTerm));
-            videoSearchTags = videos.FindAll(v => v.tags.Contains(searchTerm) || v.username.Contains(searchTerm));
-            photoSearchTags = photos.FindAll(p => p.tags.Contains(searchTerm) || p.username.Contains(searchTerm));
+            audioSearchTags = audios.FindAll(a => a.tags.Contains(searchTermLower) || a.username.Contains(searchTermLower));
+            videoSearchTags = videos.FindAll(v => v.tags.Contains(searchTermLower) || v.username.Contains(searchTermLower));
+            photoSearchTags = photos.FindAll(p => p.tags.Contains(searchTermLower) || p.username.Contains(searchTermLower));
             return mediaCollection = new MediaCollection { mediaAudios = audioSearchTags, mediaPhotos = photoSearchTags, mediaVideos = videoSearchTags };
         }
 
@@ -404,22 +415,189 @@ namespace WebApplication1.Controllers
         [Route(nameof(HomeController.Video))]
         public ActionResult Video()
         {
+
+            if (videos != null)
+                return View(videos);
+
+            videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            return View(videos);
+        }
+
+        
+        [Route("RecentlyAddedVideos")]
+        public ActionResult RecentlyAddedVideos()
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var recent = videos.Take(12);
+            return PartialView("_rVids",recent);
+        }
+
+        [AjaxOnly]
+        public ActionResult MostViewedVideos()
+        {
+            if(videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var mostViewed = Media.videos.OrderByDescending(v => v.views).ToList();
+            return PartialView("_mViewed", mostViewed);
+        }
+
+        [AjaxOnly]
+        public ActionResult TopRated()
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var topVids = Media.videos.OrderByDescending(v => v.ratings).ToList();
+            return PartialView("_tVids",topVids);
+        }
+
+        [AjaxOnly]
+        public ActionResult MostCommented()
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var mCommented = Media.videos.OrderByDescending(v => v.comments).ToList();
+            return PartialView("_mCommented",mCommented);
+        }
+
+        [HttpPost]
+        [Route("SearchVideos/{searchTerm}")]
+        public ActionResult SearchVideos(string searchTerm)
+        {
+            var searchVideos = Media.videos
+                .Where(v => v.type == 0 && (v.tags.Equals(searchTerm, StringComparison.OrdinalIgnoreCase) || v.username.Equals(searchTerm, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+            return View(searchVideos);
+        }
+
+        
+
+        [HttpPost]
+        [Route(nameof(AdvVideoSearchPost))]
+        public ActionResult AdvVideoSearchPost(AdvancedSearchViewModel searchCriteria)
+        {
+            if (ModelState.IsValid)
+            {
+                var Advvideos = Media.videos
+                    .Where(v => v.categories.Equals(searchCriteria.SelectCategory) && v.type==0 && (v.tags.Equals(searchCriteria.Term,StringComparison.OrdinalIgnoreCase)|| v.tags.Equals(searchCriteria.Term,StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+                return View(Advvideos);
+            }
+
+            return View(searchCriteria);
+        }
+        
+        [Route("Videos/Categories")]
+        public ActionResult VideosWithCategories()
+        {
+            var catego = new List<video>();
+            if (videos == null)
+                videos = Media.videos.OrderByDescending(v => v.date_added).ToList();
+            var categories = Media.categories.ToList();
+            var results = from c in categories
+                          join v in videos on c.categoryid equals v.categoryid into VC
+                          select new VideoCategoryViewModel {id=c.categoryid, CategoryName = c.categoryname, CategoryVideos = VC as List<video>};
+            return View(results);
+        }
+
+        [Route("Videos/Category/{categoryId}")]
+        public ActionResult VideoWithCategory(int categoryId)
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v=>v.type==0).OrderByDescending(v => v.date_added).ToList();
+            var videoInCategory = videos.Where(v=>v.categoryid == categoryId).ToList();
+            if (videoInCategory != null)
+            {
+                ViewBag.CategoryName = Media.categories.FirstOrDefault(c => c.categoryid == categoryId).categoryname;
+                return View(videoInCategory);
+            }
+            else
+                ViewBag.NoVideoInCategory = "No Videos In this Category";
+            return View();
+           
+        }
+
+        [AjaxOnly]
+        public ActionResult RecentlyAddedVideosInCategory(int id)
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var videoInCategory = videos.Where(v => v.categoryid == id).ToList();
+            if (videoInCategory != null)
+                return View(videoInCategory);
+            else
+                ViewBag.NoVideoInCategory = "No Videos In this Category";
             return View();
         }
 
-        /// <summary>
-        /// return the list of videos for the video view in a json formart.
-        /// </summary>
-        /// <returns></returns>
-        [Route(nameof(GetVideos))]
-        public JsonResult GetVideos()
+        [AjaxOnly]
+        public ActionResult MostViewedVideosInCategory(int id)
         {
-            if (videos != null)
-                return Json(videos, JsonRequestBehavior.AllowGet);
-            
-            videos = Media.videos.Where(v=>v.type==0).OrderByDescending(v => v.date_added).ToList();
-            return Json(videos, JsonRequestBehavior.AllowGet);
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var videoInCategory = videos.Where(v => v.categoryid == id).OrderByDescending(v => v.views).ToList();
+            if (videoInCategory != null)
+                return View(videoInCategory);
+            else
+                ViewBag.NoVideoInCategory = "No Videos In this Category";
+            return View();
         }
+
+        [AjaxOnly]
+        public ActionResult TopRatedInCategory(int id)
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var videoInCategory = videos.Where(v => v.categoryid == id).OrderByDescending(v=>v.ratings).ToList();
+            if (videoInCategory != null)
+                return View(videoInCategory);
+            else
+                ViewBag.NoVideoInCategory = "No Videos In this Category";
+            return View();
+        }
+
+        [AjaxOnly]
+        public ActionResult MostCommentedInCategory(int id)
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var videoInCategory = videos.Where(v => v.categoryid == id).OrderByDescending(v=>v.comments).ToList();
+            if (videoInCategory != null)
+                return View(videoInCategory);
+            else
+                ViewBag.NoVideoInCategory = "No Videos In this Category";
+            return View();
+        }
+
+        [ChildActionOnly]
+        [Route(nameof(DistinctVideoCategories))]
+        public ActionResult DistinctVideoCategories()
+        {
+            var Videocategories = Media.categories.Where(c => c.type == 2).ToList();
+            var ThreeVideoCategories = Videocategories.Take(3);
+            return PartialView("_distinctVideoCategory",ThreeVideoCategories);
+        }
+
+        [ChildActionOnly]
+        [Route(nameof(AsideVideoTags))]
+        public ActionResult AsideVideoTags()
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v => v.date_added).ToList();
+            var AsideVideoTags = videos.Distinct().Take(4);
+            return PartialView("_asideVideoTags", AsideVideoTags);
+        }
+
+        [ChildActionOnly]
+        [Route(nameof(RecentlyAddedAside))]
+        public ActionResult RecentlyAddedAside()
+        {
+            if (videos == null)
+                videos = Media.videos.Where(v => v.type == 0).OrderByDescending(v=>v.date_added).ToList();
+            var FourVideos = videos.Take(4);
+            return PartialView("_recentlyAddedVideos",FourVideos);
+        }
+        
 
         /// <summary>
         /// 
@@ -604,15 +782,33 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route(nameof(AdvAudioSearchPost))]
+        public ActionResult AdvAudioSearchPost(AdvancedSearchViewModel searchCriteria)
+        {
+            if (ModelState.IsValid)
+            {
+                //Basic Adv search
+                var advAudios = GetSearchRequests(searchCriteria.Term)
+                    .mediaVideos
+                    .Where(v => v.categories.Equals(searchCriteria.SelectCategory)&& v.type==2 && (v.tags.Equals(searchCriteria.Term,StringComparison.OrdinalIgnoreCase) || v.username.Equals(searchCriteria.Term,StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+               
+                return View(advAudios);
+            }
+
+            return View(searchCriteria);
+        }
+
         [Route(nameof(GetAudios))]
-        public JsonResult GetAudios()
+        public ActionResult GetAudios()
         {
             if (audios != null)
-                return Json(audios,JsonRequestBehavior.AllowGet );
+                return View(audios);
             //otherwise if video table has been modified: query the table again, update audio cache, extract audio files and pass it to views.
             audios = Media.videos.Where(v=>v.type==1).OrderByDescending(v => v.date_added).ToList();
           
-            return Json(audios, JsonRequestBehavior.AllowGet);
+            return View(audios);
         }
 
         [Route("Audio/{Id}")]

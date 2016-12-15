@@ -1,0 +1,175 @@
+﻿@model IEnumerable<WebApplication1.Models.VideoCategoryViewModel>
+@{
+    ViewBag.Title = "Video Categories - Video Starter Kit";
+}
+<div class="row">
+    <div class="container">
+<div class="col-lg-8 col-md-8">
+    <ol id="MC_MC_bread" class="breadcrumb">
+        <li>
+            @Html.ActionLink("Home","Index")
+        </li>
+        <li>
+            @Html.ActionLink("Videos", "Video")
+        </li>
+        <li class="active">Category List</li>
+    </ol>
+    <div id="MC_MC_cat_lst1_widget">
+        <div class="panel panel-default">
+            <div id="MC_MC_cat_lst1_hd" class="panel-heading">
+                <h3 id="MC_MC_cat_lst1_cmt" class="panel-title">Video Categories</h3>
+            </div>
+            <div class="panel-body">
+                <div id="MC_MC_cat_lst1_lst">
+                    <div class="row marginfixed">
+                        @foreach (var video in Model)
+                        {
+                            <div class="row marginfixed">
+                                <div class="col-md-12">
+                                    <a href="/videos/category/@video.id" class="xxmedium-text bold" title="Browse Video in @video.CategoryName">@video.CategoryName</a><div class="bx_br_both">
+                                        @foreach (var videos in video.CategoryVideos)
+                                        {
+                                            <div class="item item-video">
+                                                <div class="thumb">
+                                                    <a class="clip-link" href="/video/@videos.videoid" title="@videos.tags">
+                                                        <span class="clip">
+                                                            <img id="p1ac4uff7q1lvagtb1rj6uhi13p93" src="/@videos.videofilename" onmouseout="endm('p1ac4uff7q1lvagtb1rj6uhi13p93'); this.src='/contents/member/aaaaaa/Thumbs/p1ac4uff7q1lvagtb1rj6uhi13p93_014.jpg'; " onmouseover="startm('p1ac4uff7q1lvagtb1rj6uhi13p93','/contents/member/aaaaaa/Thumbs/p1ac4uff7q1lvagtb1rj6uhi13p93_','.jpg'); ">
+                                                        </span>
+                                                        <span class="overlay"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="meta-data">
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <script type="text/javascript">stat['p1abv9pfc7utq1g0917pr1b3b13ak4'] = 0; pic['p1abv9pfc7utq1g0917pr1b3b13ak4'] = new Array(); pics['p1abv9pfc7utq1g0917pr1b3b13ak4'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1abv9pfc7utq1g0917pr1b3b13ak4'] = 0; pic['p1abv9pfc7utq1g0917pr1b3b13ak4'] = new Array(); pics['p1abv9pfc7utq1g0917pr1b3b13ak4'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1ac4uff7q1lvagtb1rj6uhi13p93'] = 0; pic['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(); pics['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1ac4uff7q1lvagtb1rj6uhi13p93'] = 0; pic['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(); pics['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1ac4uff7q1lvagtb1rj6uhi13p93'] = 0; pic['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(); pics['p1ac4uff7q1lvagtb1rj6uhi13p93'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1achgi72dd89hv9cf6guq8kn3'] = 0; pic['p1achgi72dd89hv9cf6guq8kn3'] = new Array(); pics['p1achgi72dd89hv9cf6guq8kn3'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1achgi72dd89hv9cf6guq8kn3'] = 0; pic['p1achgi72dd89hv9cf6guq8kn3'] = new Array(); pics['p1achgi72dd89hv9cf6guq8kn3'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1abv9ccj88u11n4f1uuck4b58m4'] = 0; pic['p1abv9ccj88u11n4f1uuck4b58m4'] = new Array(); pics['p1abv9ccj88u11n4f1uuck4b58m4'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1abv92ob8vfa10ob1fl01rn5o21d'] = 0; pic['p1abv92ob8vfa10ob1fl01rn5o21d'] = new Array(); pics['p1abv92ob8vfa10ob1fl01rn5o21d'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1ab87ku95rbkn801hs81nrmnfi3'] = 0; pic['p1ab87ku95rbkn801hs81nrmnfi3'] = new Array(); pics['p1ab87ku95rbkn801hs81nrmnfi3'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1ab87ku95rbkn801hs81nrmnfi3'] = 0; pic['p1ab87ku95rbkn801hs81nrmnfi3'] = new Array(); pics['p1ab87ku95rbkn801hs81nrmnfi3'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1abv9fseetf757g12fs1v991a884'] = 0; pic['p1abv9fseetf757g12fs1v991a884'] = new Array(); pics['p1abv9fseetf757g12fs1v991a884'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1); stat['p1abv9fseetf757g12fs1v991a884'] = 0; pic['p1abv9fseetf757g12fs1v991a884'] = new Array(); pics['p1abv9fseetf757g12fs1v991a884'] = new Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="col-md-4 col-lg-4 pull-right  lnav">
+
+    <div class="tab-video-container">
+        <fieldset class="top-border search-wrapper">
+            <div class="panel-body">
+                @using (Html.BeginForm("SearchVideo", "Home", FormMethod.Post))
+                {
+                    <div class="input-group input-group-sm">
+                        <input name="searchTerm" type="text" id="MC_navigation1_txt_search" class="form-control" placeholder="Search Videos">
+                        <span class="input-group-btn">
+                            <input type="submit" name="search" value="Search" id="MC_navigation1_btn_u_search" class="btn btn-default">
+                        </span>
+                    </div>
+                }
+
+                <div class="help-block item_r">
+                    @Html.ActionLink("Advance Search", "AdvSearch")
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="MC_navigation1_categories1_main">
+        <div class="tab-video-container">
+            <fieldset class="top-border">
+                <legend style="text-align: center;" class="top-border" align="center">Videos Categories</legend>
+                <div id="MC_navigation1_categories1_hd" class="panel-heading" style="display: none;">
+                    <h3 id="MC_navigation1_categories1_htitle" class="panel-title">Videos Categories</h3>
+                </div>
+                <div class="panel-body item">
+                    <div id="MC_navigation1_categories1_lst" class=" clearfix">
+                        <div>
+                        </div>
+                        <!-- Close floating div -->
+                        @{Html.RenderAction("DistinctVideoCategories", "Home");}
+                        <div class="item_pad_2_r">@Html.ActionLink("See all", "VideosWithCategories", new { title = "Browse more video categories" })</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div id="MC_navigation1_tags1_widget" class="panel flow_lst">
+        <div class="panel panel-default">
+            <div id="MC_navigation1_tags1_hd" class="panel-heading">
+                <h3 id="MC_navigation1_tags1_htitle" class="panel-title">Videos Tags</h3>
+            </div>
+            <div class="panel-body">
+                <div id="MC_navigation1_tags1_lst" class=" clearfix">
+                    <div class="bx_br_bt item_pad_4">
+                        <div class="flow_lst">
+                            @{ Html.RenderAction("AsideVideoTags", "Home");}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="MC_navigation1_archives1_widget" class="ver_lst">
+        <div class="tab-video-container">
+            <fieldset class="top-border">
+                <legend style="text-align: center;" class="top-border" align="center">Archives</legend>
+                <div id="MC_navigation1_archives1_hd" class="panel-heading" style="display: none;">
+                    <h3 id="MC_navigation1_archives1_htitle" class="panel-title">Archives</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="MC_navigation1_archives1_lst">
+                        <div class="item">
+                            <div class="ver_lst%;">
+                                <ul>
+                                    <li>
+                                        <a href="/videos/archive/2016/2/default.aspx" title=" added in February 2016">February 2016</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ver_lst%;">
+                                <ul></ul>
+                            </div><div class="clearfix"></div>
+                        </div>
+                        <div class="item_pad_4_r">
+                            <a href="/videos/archive.aspx" title="">See All</a>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div id="MC_navigation1_vd_sm2_widget" class="tab-video-wrapper">
+
+        <div class="tab-video-container">
+            <fieldset class="top-border">
+                <legend id="MC_navigation1_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recently Added Videos</legend>
+
+
+                <div id="my-tab-content" class="tab-content">
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="MC_navigation1_vd_sm2_lst" class="section-content grid-small clearfix">
+                                @{Html.RenderAction("RecentlyAddedAside", "Home");}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>

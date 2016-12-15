@@ -1,9 +1,9 @@
-﻿
+﻿@model WebApplication1.Models.MediaCollection
 @{
     ViewBag.Title = "VidMoji - Video Starter Kit";
 }
 
-<script id="templateTrendingMedia" type="text/html">
+
     <div class="container">
         <div class="row">
             <div class="video-wrapper">
@@ -56,63 +56,75 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="section-content grid-small clearfix">
-                                                                
-                          
-                                                                            <div class="navbar-default navbar">
-                                                                                <div class="container">
-                                                                                    <div class="navbar-right">
-                                                                                        <div class="btn-group navbar-btn dropdown">
-                                                                                            <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                Action <span class="caret"></span>
-                                                                                            </button>
-                                                                                            <ul class="dropdown-menu" role="menu" data-labelledby="dLabel">
-                                                                                                <li role="presentation">@Ajax.ActionLink("Recent", "GetVideoItems", new { ItemsProps = "recent" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
-                                                                                                <li role="presentation">@Ajax.ActionLink("Viewed", "GetVideoItems", new { ItemsProps = "viewed" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
-                                                                                                <li>@Ajax.ActionLink("Liked", "GetVideoItems", new { ItemsProps = "liked" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
 
-                                                                                                <li>@Ajax.ActionLink("Favorites", "GetVideoItems", new { ItemsProps = "favorites" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
-                                                                                                <li>@Ajax.ActionLink("Comment", "GetVideoItems", new { ItemsProps = "comment" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                        <div class="btn-group navbar-btn">
-                                                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                Action <span class="caret"></span>
-                                                                                            </button>
-                                                                                            <ul class="dropdown-menu">
-                                                                                                <li>@Ajax.ActionLink("Today", "GetVideosTime", new { filter = "today" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
-                                                                                                <li>@Ajax.ActionLink("This Week", "GetVideosTime", new { filter = "this week" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
-                                                                                                <li>@Ajax.ActionLink("This Month", "GetVideosTime", new { filter = "this month" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
 
-                                                                                                <li>@Ajax.ActionLink("All the time", "GetVideosTime", new { filter = "all the time" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                
+                                                                <div class="navbar-default navbar">
+                                                                    <div class="container">
+                                                                        <div class="navbar-right">
+                                                                            <div class="btn-group navbar-btn dropdown">
+                                                                                <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    Action <span class="caret"></span>
+                                                                                </button>
+                                                                                <ul class="dropdown-menu" role="menu" data-labelledby="dLabel">
+                                                                                    <li role="presentation">@Ajax.ActionLink("Recent", "GetVideoItems", new { ItemsProps = "recent" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
+                                                                                    <li role="presentation">@Ajax.ActionLink("Viewed", "GetVideoItems", new { ItemsProps = "viewed" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" }, new { role = "menuitem" })</li>
+                                                                                    <li>@Ajax.ActionLink("Liked", "GetVideoItems", new { ItemsProps = "liked" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+
+                                                                                    <li>@Ajax.ActionLink("Favorites", "GetVideoItems", new { ItemsProps = "favorites" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                    <li>@Ajax.ActionLink("Comment", "GetVideoItems", new { ItemsProps = "comment" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                </ul>
                                                                             </div>
-                                                                        
+                                                                            <div class="btn-group navbar-btn">
+                                                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    Action <span class="caret"></span>
+                                                                                </button>
+                                                                                <ul class="dropdown-menu">
+                                                                                    <li>@Ajax.ActionLink("Today", "GetVideosTime", new { filter = "today" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                    <li>@Ajax.ActionLink("This Week", "GetVideosTime", new { filter = "this week" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                    <li>@Ajax.ActionLink("This Month", "GetVideosTime", new { filter = "this month" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
 
-       
+                                                                                    <li>@Ajax.ActionLink("All the time", "GetVideosTime", new { filter = "all the time" }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "TrendingVideos" })</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                {{#media.mediaVideos}}
-                                                                <div class="item item-video"id="TrendingVideos">
-                                                                    <div class="thumb">
-                                                                        <a class="clip-link" href="Video/{{videoid}}" title="{{tags}}">
-                                                                            <span class="clip">
-                                                                                <video id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{videofilename}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); "></video>
-                                                                            </span><span class="overlay"></span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="meta-data">
-                                                                        <h2>
-                                                                            <a href="Video/{{videoid}}" title="{{tags}}">{{tags}}</a>
-                                                                        </h2>
-                                                                        <p class="tag">9 months ago</p>
-                                                                        <p class="views">{{views}} views</p>
-                                                                        <a class="category" href="/user/administrator.aspx" title="Administrator">{{username}}</a>
-                                                                    </div>
                                                                 </div>
-                                                                {{/media.mediaVideos}}
+
+
+
+
+                                                                @foreach (var item in Model.mediaVideos)
+                                                                {
+                                                                    <div class="item item-video" id="TrendingVideos">
+                                                                        <div class="thumb">
+                                                                            <a class="clip-link" href="Video/@item.videoid" title=@item.tags>
+                                                                                <span class="clip">
+                                                                                    <video id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src=@Url.Content(item.videofilename) onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); "></video>
+                                                                                </span><span class="overlay"></span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="meta-data">
+                                                                            <h2>
+                                                                                <a href="Video/@item.videoid" title=@item.tags>@item.tags</a>
+                                                                            </h2>
+                                                                            @if (item.date_added.Value.ToString("MMMM") != null)
+                                                                            {
+                                                                                <p class="tag">@item.date_added.Value.ToString("MMMM") months ago</p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p class="tag">@item.date_added.Value.ToString("ddd") days ago</p>
+                                                                            }
+                                                                            
+
+                                                                            <p class="views">@item.views views</p>
+                                                                            <a class="category" href="/user/@item.username" title=@item.username>@item.username</a>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -168,25 +180,36 @@
                                                                             </div>
                                                                        
 
-                                                                {{#media.mediaPhotos}}
-                                                                <div class="item item-video">
-                                                                    <div class="thumb">
-                                                                        <a class="clip-link" href="Photo/{{imageid}}" title="{{tags}}">
-                                                                            <span class="clip">
-                                                                                <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{filename}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
-                                                                            </span><span class="overlay"></span>
-                                                                        </a>
+                                                                @foreach (var item in Model.mediaPhotos)
+                                                                {
+                                                                    <div class="item item-video">
+                                                                        <div class="thumb">
+                                                                            <a class="clip-link" href="Photo/@item.imageid" title=@item.tags>
+                                                                                <span class="clip">
+                                                                                    <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src=@item.filename onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                                                                                </span><span class="overlay"></span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="meta-data">
+                                                                            <h2>
+                                                                                <a href="Photo/@item.imageid" title=@item.tags>@item.tags</a>
+                                                                            </h2>
+                                                                            @if (item.added_date.Value.ToString("MMMM") != null)
+                                                                            {
+                                                                                <p class="tag">@item.added_date.Value.ToString("MMMM") months ago</p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p class="tag">@item.added_date.Value.ToString("ddd") days ago</p>
+                                                                            }
+                                
+                                                                            <p class="views">@item.views views</p>
+                                                                            <a class="category" href="/user/@item.username" title=@item.username>@item.username</a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="meta-data">
-                                                                        <h2>
-                                                                            <a href="Photo/{{imageid}}" title="{{tags}}">{{tags}}</a>
-                                                                        </h2>
-                                                                        <p class="tag">9 months ago</p>
-                                                                        <p class="views">{{views}} views</p>
-                                                                        <a class="category" href="/user/{{username}}" title="Administrator">{{username}}</a>
-                                                                    </div>
-                                                                </div>
-                                                                {{/media.mediaPhotos}}
+                                                                }
+                                                               
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,7 +227,7 @@
                                     <div id="MC_vd_sm2_widget" class="tab-video-wrapper">
                                         <div class="tab-video-container">
                                             <fieldset class="top-border">
-                                                <legend id="MC_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recent Photos</legend>
+                                                <legend id="MC_vd_sm2_cmt" align="center" class="top-border" style="text-align:center;">Recent Audios</legend>
                                                 <div id="my-tab-content" class="tab-content">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -241,25 +264,36 @@
                                                                             </div>
                                                                         
 
-                                                                {{#media.mediaAudios}}
-                                                                <div class="item item-video">
-                                                                    <div class="thumb">
-                                                                        <a class="clip-link" href="Audio/{{videoid}}" title="{{tags}}">
-                                                                            <span class="clip">
-                                                                                <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src="{{coverurl}}" onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
-                                                                            </span><span class="overlay"></span>
-                                                                        </a>
+                                                                @foreach (var item in Model.mediaAudios)
+                                                                {
+                                                                    <div class="item item-video">
+                                                                        <div class="thumb">
+                                                                            <a class="clip-link" href="Audio/@item.videoid" title=@item.tags>
+                                                                                <span class="clip">
+                                                                                    <img id="p1abl3gnjqcrnmr3c5n131fjst3" class="img-responsive" src=@item.coverurl onmouseout="endm('p1abl3gnjqcrnmr3c5n131fjst3'); this.src='/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_008.jpg'; " onmouseover="startm('p1abl3gnjqcrnmr3c5n131fjst3','/contents/member/Administrator/Thumbs/p1abl3gnjqcrnmr3c5n131fjst3_','.jpg'); " />
+                                                                                </span><span class="overlay"></span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="meta-data">
+                                                                            <h2>
+                                                                                <a href="Audio/@item.videoid" title="@item.tags">@item.tags</a>
+                                                                            </h2>
+                                                                            @if (item.date_added.Value.ToString("MMMM") != null)
+                                                                            {
+                                                                                <p class="tag">@item.date_added.Value.ToString("MMMM") months ago</p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p class="tag">@item.date_added.Value.ToString("ddd") days ago</p>
+                                                                            }
+                                                                           
+                                                                            <p class="views">@item.views views</p>
+                                                                            <a class="category" href="/user/@item.username" title=@item.username>@item.username</a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="meta-data">
-                                                                        <h2>
-                                                                            <a href="Audio/{{videoid}}" title="{{tags}}">{{tags}}</a>
-                                                                        </h2>
-                                                                        <p class="tag">9 months ago</p>
-                                                                        <p class="views">{{views}} views</p>
-                                                                        <a class="category" href="/user/{{username}}" title="Administrator">{{username}}</a>
-                                                                    </div>
-                                                                </div>
-                                                                {{/media.mediaAudios}}
+                                                                }
+                                                                
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
@@ -278,8 +312,3 @@
 
     </div>
 
-</script>
-
-<div id="MediaDestinationTags">
-
-</div>

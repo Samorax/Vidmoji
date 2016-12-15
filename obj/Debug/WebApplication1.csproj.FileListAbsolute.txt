@@ -111,3 +111,4 @@ C:\Users\samuel\workspace\WebApplication1\WebApplication1\obj\Debug\WebApplicati
 C:\Users\samuel\workspace\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.MediaContext.testing1.resources
 C:\Users\samuel\workspace\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.MediaContext.toAzureDB.resources
 C:\Users\samuel\workspace\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.MediaContext.AddedTables.resources
+C:\Users\samuel\workspace\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.MediaContext.AzureDbSetup.resources

@@ -1,0 +1,124 @@
+﻿@model WebApplication1.Models.AdvancedSearchViewModel
+@{
+    ViewBag.Title = "Advance Search - Video Starter Kit";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-8 col-lg-8">
+            <ol id="MC_MC_bread" class="breadcrumb">
+                <li>@Html.ActionLink("Home","Index")</li>
+                <li>@Html.ActionLink("Videos","Video")</li>
+                <li class="active">Advance Search</li>
+            </ol>
+            <div class="module_t_mrg ui-corner-all">
+                <div id="MC_MC_advsearch1_msg">
+                </div>
+                <div id="MC_MC_advsearch1_main">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="MC_MC_advsearch1_cmt" class="panel-title">Advance Video Search</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <fieldset>
+                                @using (Html.BeginForm("AdvVideoSearchPost", "Home", FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Term)
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Term, new { @class = "form-control", placeholder = "Enter Search term" })
+                                                @Html.ValidationMessageFor(m => m.Term)
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Author)
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Author, new { @class = "form-control", placeholder = "Enter Album Author" })
+                                                @Html.ValidationMessageFor(m => m.Author)
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="MC_MC_advsearch1_mcat" class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.SelectCategory)
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                @Html.EnumDropDownListFor(m => m.SelectCategory, new
+                                       {
+                                           @class = "form-control",
+                                           size = 4,
+                                           multiple = "multiple",
+                                           style = "height:100px;"
+                                       })
+                                                @Html.ValidationMessageFor(m => m.SelectCategory)
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Type)
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                @Html.EnumDropDownListFor(m => m.Type, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.OrderBy)
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                @Html.EnumDropDownListFor(m => m.OrderBy, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <input type="submit" name="ctl00$ctl00$MC$MC$advsearch1$btn_update" value="Submit" id="MC_MC_advsearch1_btn_update" class="btn btn-primary btn-block btn-lg">
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                        </div>
+                                    </div>
+                                }
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+    
+

@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Upload Video - Video Starter Kit";
+}
+
+
+<div class="tab-content container account-wrapper">
+
+    <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div id="MC_vd_nav1_nav" class="list-group">
+                    @Html.ActionLink("Upload Videos", "UploadVideos", null, new { @class = "list-group-item condensed active" })
+                    @Html.ActionLink("My Videos", "MyVideos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                    @Html.ActionLink("My Liked Videos", "MyLikedVideos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="container" style="position: relative;">
+                    <div id="MC_uploader1_msg">
+                    </div>
+                   <form enctype="multipart/form-data" id="UploadVideo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="MC_uploader1_cmt" class="panel-title">Upload Video</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="UploadMessage"></div>
+                            <div class="pd_10 item_c">
+                                <div id="testinfo"></div>
+                                <div id="filelist">
+                                </div>
+                            </div>
+                            <div class="pd_10 item_c">
+                                <input type="file" name="file" id="MC_uploader1_pickfiles" class="btn btn-primary btn-lg" />
+                            </div>
+                            <img src="~/Images/ripple.gif" id="Loader" hidden />
+                            <div class="pd_10 item_c">
+                                @Html.ActionLink("Embed Video", "EmbedVideo", null, new { @class = "btn btn-primary btn-lg" })
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Upload Videos" class="btn btn-primary btn-lg" id="uploadVideos" />
+                        </div>
+                    </div>
+                    </form>
+
+                    <div id="tfiles" style="display: none;">
+                        1
+                    </div>
+                    <div id="maxpid" style="display: none;">
+                        0
+                    </div>
+                    <div id="p1b3l6a3n31trav43ge1rq51aru0_html5_container" style="position: absolute; background: transparent none repeat scroll 0% 0%; width: 151px; height: 46px; overflow: hidden; z-index: -1; opacity: 0; top: 55px; left: 16px;" class="plupload html5"><input id="p1b3l6a3n31trav43ge1rq51aru0_html5" style="font-size: 999px; position: absolute; width: 100%; height: 100%;" accept="video/mp4,video/x-ms-wmv,video/mpeg,video/x-flv,video/avi,video/quicktime,video/x-m4v" multiple="multiple" type="file"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+   
+@section Scripts{
+<script src="~/Scripts/Client/Upload.js"></script>
+}
+

@@ -68,14 +68,16 @@
     </div>
     <div class="search-wrapper">
         <div class="container">
-            <form action="/Search" method="post">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+            {
                 <div class="input-group">
                     <input name="SearchTerm" type="text" id="search1_txt_search" class="form-control" data-autocomplete-source="@Url.Action("QuickSearch","Home")" placeholder="Search or Paste Youtube Link..." />
                     <span class="input-group-btn">
                         <input type="submit" value="Search/Paste Link" id="search1_btn_search" class="btn btn-default" />
                     </span>
                 </div>
-            </form>
+            }
+            
         </div>
     </div>
     <div id="tagging" class="list-slider-wrapper">
@@ -172,23 +174,23 @@
                         <li class="clone" aria-hidden="true" style="width: 904px; float: left; display: block;">
                             <div class="listings">
                                 <ul class="clearfix">
-                        <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
-                        <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
-                        <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
-                        <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
-                        <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
-                        <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
-                        <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
-                        <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
-                        <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
-                        <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
-                        <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
-                        <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
-                        <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
-                        <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
-                        <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("See You Later", "Search", new { searchTerm = "See You Later" })</li>
+                                    <li>@Html.ActionLink("OK", "Search", new { searchTerm = "OK" })</li>
+                                    <li>@Html.ActionLink("Good Bye", "Search", new { searchTerm = "Good Bye" })</li>
+                                    <li>@Html.ActionLink("Good Morning", "Search", new { searchTerm = "Good Morning" }) </li>
+                                    <li>@Html.ActionLink("Happy New Year", "Search", new { searchTerm = "Happy New Year" })</li>
+                                    <li>@Html.ActionLink("I Hate You", "Search", new { searchTerm = "I Hate You" })</li>
+                                    <li>@Html.ActionLink("Take Care", "Search", new { searchTerm = "Take Care" }) </li>
+                                    <li>@Html.ActionLink("I Miss You", "Search", new { searchTerm = "I Miss You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
+                                    <li>@Html.ActionLink("Nice Caption", "Search", new { searchTerm = "Nice Caption" })</li>
+                                    <li>@Html.ActionLink("I Love", "Search", new { searchTerm = "I Love You" })</li>
+                                    <li>@Html.ActionLink("I need you", "Search", new { searchTerm = "I need You" })</li>
                                 </ul>
-                             </div>
+                            </div>
                         </li>
                         <li class="clone" style="width: 904px; float: left; display: block;">
                             <div class="listings">
@@ -227,9 +229,9 @@
                 </ul>
             </div>
         </div>
-        
+
     </div>
-    
+
     <div class="container body-content">
         @RenderBody()
         <hr style="border: 1px solid #f28322;" />
@@ -282,10 +284,10 @@
     <script>
         $(document).ready(function () {
 
-                $("input[data-autocomplete-source]").each(function () {
-                    var target = $(this);
-                    target.autocomplete({ source: target.attr("data-autocomplete-source") });
-                });
+            $("input[data-autocomplete-source]").each(function () {
+                var target = $(this);
+                target.autocomplete({ source: target.attr("data-autocomplete-source") });
+            });
 
             var owl = $("#owl-demo");
             owl.owlCarousel({
@@ -317,18 +319,19 @@
     <script src="~/bower_components/flexslider/jquery.flexslider-min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/owl.carousel.js"></script>
-    <script src="~/Scripts/mustache.js"></script>
+    @*<script src="~/Scripts/mustache.js"></script>*@
     <script src="~/Scripts/custom.js"></script>
     <script src="~/bower_components/dropdown.js/jquery.dropdown.js"></script>
-    <script type="text/javascript">
-    $.getJSON("IndexMediaCollection", function (data) {
-        var dataTemplate = Mustache.to_html($("#templateTrendingMedia").html(), { media: data });
-        $("#MediaDestinationTags").empty().html(dataTemplate)
-    })
-    </script>
+    @*<script type="text/javascript">
+        $.getJSON("IndexMediaCollection", function (data) {
+            var dataTemplate = Mustache.to_html($("#templateTrendingMedia").html(), { media: data });
+            $("#MediaDestinationTags").empty().html(dataTemplate)
+        })
+        </script>*@
     <script src="~/Scripts/Client/VideoDetail.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

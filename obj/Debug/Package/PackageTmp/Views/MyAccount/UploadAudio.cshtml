@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebApplication1.Models.Galleries>
+@{
+    ViewBag.Title = "Upload Audio - Video Starter Kit";
+}
+
+<div class="tab-content container account-wrapper">
+    <div id="My-Account" class="tab-pane active">
+        <div class="col-md-3">
+            <div id="MC_vd_nav1_nav" class="list-group">
+                @Html.ActionLink("Upload Audios", "UploadAudios", null, new { @class = "list-group-item condensed active" })
+                @Html.ActionLink("My Audios", "MyAudios", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                @Html.ActionLink("My Liked Audios", "MyLikedAudios", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div id="MC_uoptions1_msg"></div>
+            <div class="module ui-corner-all">
+                <div class="col-lg-12">
+                    <div role="form">
+                        <h2 id="MC_uoptions1_status">Upload Audios</h2>
+                        <hr class="colorgraph">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input id="MC_uoptions1_r_noalbum" name="ctl00$MC$uoptions1$album" value="r_noalbum" checked="checked" type="radio">
+                                                No Album
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="MC_uoptions1_drp_album">Select Album:</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                    <div ="form-inline">
+                                        <div class="form-group">
+                                            <label class="radio-inline">
+                                                <input id="MC_uoptions1_r_album" name="ctl00$MC$uoptions1$album" value="r_album" type="radio">
+                                                <select name="ctl00$MC$uoptions1$drp_album" id="MC_uoptions1_drp_album" class="form-control">
+
+                                                    @if (ViewBag.NoAudioAlbums != null)
+                                                    {
+                                                        <option value="">Select Album</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (var Album in Model)
+                                                        {
+                                                            <option value="@Album.GalleriesId">@Album.Title</option>
+                                                        }
+
+                                                    }
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                                    @Html.ActionLink("Upload Audio", "UploadMedia", new { @class = "btn btn-primary btn-block btn-lg", type = "submit" })
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            @Html.ActionLink("Create Album", "CreateAudioAlbum", null, new { @class = "btn btn-info btn-block btn-lg" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

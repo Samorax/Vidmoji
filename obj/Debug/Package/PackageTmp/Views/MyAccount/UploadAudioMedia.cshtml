@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "Upload Audio - Video Starter Kit";
+}
+
+<div class="tab-content container account-wrapper">
+
+    <div class="tab-pane myaccount-inner-wrap active" id="My-Account">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div id="MC_vd_nav1_nav" class="list-group">
+                    @Html.ActionLink("Upload Audios", "UploadAudios", null, new { @class = "list-group-item condensed active" })
+                    @Html.ActionLink("My Audios", "MyAudios", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                    @Html.ActionLink("My Liked Audios", "MyLikedAudios", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="container" style="position: relative;">
+                    <div id="MC_uploader1_msg">
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="MC_uploader1_cmt" class="panel-title">Upload Audio</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pd_10 item_c">
+                                <div id="testinfo"></div>
+                                <div id="filelist">
+                                </div>
+                            </div>
+                            <div class="pd_10 item_c">
+                                <a href="javascript:;" id="MC_uploader1_pickfiles" class="btn btn-primary btn-lg" style="position: relative; z-index: 0;">
+                                    Select Audios
+                                </a>
+                            </div>
+                            <div class="pd_10 item_c">
+                                @Html.ActionLink("Embed Audio", "EmbedAudio", null, new { @class = "btn btn-primary btn-lg" })
+                            </div>
+                        </div>
+                        <div class="panel-footer"><a class="btn btn-primary btn-lg disabled" id="uploadfiles" href="#">Upload Files</a></div>
+                    </div>
+                    <div id="tfiles" style="display: none;">
+                        1
+                    </div>
+                    <div id="maxpid" style="display: none;">
+                        0
+                    </div>
+                    <div id="p1b3l6a3n31trav43ge1rq51aru0_html5_container" style="position: absolute; background: transparent none repeat scroll 0% 0%; width: 151px; height: 46px; overflow: hidden; z-index: -1; opacity: 0; top: 55px; left: 16px;" class="plupload html5"><input id="p1b3l6a3n31trav43ge1rq51aru0_html5" style="font-size: 999px; position: absolute; width: 100%; height: 100%;" accept="video/mp4,video/x-ms-wmv,video/mpeg,video/x-flv,video/avi,video/quicktime,video/x-m4v" multiple="multiple" type="file"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/plupload.full.js"></script>
+}
+<script type="text/javascript">
+    var filesuploaded = 0;
+    var faileduploaded = 0;
+
+    $(function () {
+        var uploader = new plupload.Uploader({
+            runtimes: 'gears,html5,flash,silverlight,browserplus',
+            browse_button: 'MC_uploader1_pickfiles',
+            container: 'container',
+            max_file_size: '50mb',
+            url: '/videos/upload/upload.ashx',
+            flash_swf_url: '/plupload/js/plupload.flash.swf',
+            silverlight_xap_url: '/plupload/js/plupload.silverlight.xap',
+            chunk_size: '4mb',
+
+            filters: [
+			{ title: 'Audio Files', extensions: 'mp3,wma,mp4,wmv,mpeg,mpg,flv,avi,rm,mov,mp4v,dv,ogg,ogv,webm'}],
+            headers: { UName: 'samorax', MTP: '1' }
+        });
+        //uploader.bind('Init', function (up, params) {
+        //    $('#filelist').html("&lt;div&gt;Current runtime: " + params.runtime + "&lt;/div&gt;");
+        //});
+
+        uploader.init();
+
+        $('#uploadfiles').click(function (e) {
+            uploader.start();
+            e.preventDefault();
+            $("#uploadfiles").hide();
+            $("#MC_uploader1_embd").hide();
+        });
+
+        uploader.bind('FilesAdded', function (up, files) {
+            $("#uploadfiles").show();
+            $("#MC_uploader1_msg").html("");
+            var count=0;
+            $.each(files, function (i, file) {
+                $('#filelist').append(
+				'&lt;div id="' + file.id + '" class="item_pad_4 bx_br_bt"&gt;' + (count + 1) + ': ' + file.name + ' (' + plupload.formatSize(file.size) + ')  &lt;b&gt;&lt;/b&gt;&lt;/div&gt;' );
+                count++;
+            });
+            var maxupload = 10;
+            if(count > maxupload)
+            {
+                $.each(files, function(i, file) {
+                    uploader.removeFile(file);
+                });
+
+                $('#filelist').html("");
+                $("#uploadfiles").hide();
+                Display_Message("#MC_uploader1_msg", "Can't upload more than " + maxupload + " records at once!", 1, 1);
+                return false;
+            }
+            else {
+                $("#tfiles").html(count);
+                $("#uploadfiles").removeClass("disabled");
+                $("#MC_uploader1_pickfiles").hide();
+            }
+            up.refresh(); // Reposition Flash/Silverlight
+        });
+
+        uploader.bind('UploadProgress', function (up, file) {
+            $('#' + file.id + " b").html(file.percent + "%");
+        });
+
+        uploader.bind('Error', function (up, err) {
+            $('#filelist').append("&lt;div&gt;Error: " + err.code +
+			", Message: " + err.message +
+			(err.file ? ", File: " + err.file.name : "") +
+			"&lt;/div&gt;"
+		);
+            up.refresh(); // Reposition Flash/Silverlight
+        });
+
+        var failedstatus = 0;
+        uploader.bind('FileUploaded', function (up, file, info) {
+            // encode started
+            if (info.response != "failed" && info.response != "") {
+                EncodeVD(file.id, info.response, file.size);
+                Display_Message('#' + file.id, "Please wait for final processing", 0, 1);
+                if (failedstatus == 0)
+                    Redirect(info.response);
+                filesuploaded++;
+            }
+            else {
+                Display_Message('#' + file.id, "Response is: " + info.response, 0, 1);
+            }
+        });
+    });
+    var redcnt = 0;
+    function Redirect(filename) {
+        var IntervalID = setInterval(function () {
+            redcnt++;
+            if (redcnt > 2) {
+                clearInterval(IntervalID);
+                var tfiles = $("#tfiles").html();
+                if(tfiles == faileduploaded) { // break further processing all videos failed to upload
+                }
+                else if (filesuploaded != tfiles) {
+                    document.location = "/audio/confirm.aspx?fn=" + filename + "&amp;gid=0&amp;uvids=" + $("#tfiles").html() + "&amp;mpid=" + $("#maxpid").html().trim() + "";
+                }
+        }
+        }, 2000);
+}
+function EncodeVD(mid, mfile, msize) {
+    var params = 'UName=samorax&amp;UGID=0&amp;Prc=0&amp;PAuth=&amp;Cats=&amp;Tags=&amp;MTP=1&amp;RVDID=0&amp;isAdm=False&amp;dp=True&amp;bp=True&amp;fn=' + mfile;
+    $.ajax({
+        type: 'GET',
+        url: '/videos/upload/encode.ashx',
+        data: params,
+        async: true,
+        success: function (msg) {
+            if (msg == "Success" || msg == "") {
+                $('#' + mid).html('&lt;strong&gt;Uploading Completed Successfully - Wait for Processing.&lt;/b&gt;&lt;/div&gt;');
+            }
+            else {
+                failedstatus = 1;
+                faileduploaded++;
+                Display_Message('#' + mid, "Response is: " + msg, 0, 1);
+            }
+        }
+    });
+}
+
+</script>

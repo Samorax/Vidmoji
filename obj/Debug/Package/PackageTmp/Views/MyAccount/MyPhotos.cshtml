@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication1.Models.MediaModels.photo>
+@{
+    ViewBag.Title = "My Photos - Video Starter Kit";
+}
+
+<div class="tab-content container account-wrapper">
+    <div id="My-Account" class="tab-pane active">
+        <div class="col-md-3">
+            <div id="MC_vd_nav1_nav" class="list-group">
+                @Html.ActionLink("Upload Photos", "UploadPhotos", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Photos", "MyPhotos", null, new { @class = "list-group-item condensed active" })
+                @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                @Html.ActionLink("My Liked Photos", "MyLikedPhotos", null, new { @class = "list-group-item condensed" })
+                @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- main content section -->
+            <span id="MC_myvideos_v11_UpdatePanel2">
+
+                <div id="MC_myvideos_v11_msg">
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-lg-9">
+                        <h3 id="MC_myvideos_v11_header_txt">My Photos</h3>
+                    </div>
+                    <div class="col-md-5 col-lg-3">
+                        <div class="input-group input-group-sm">
+                            <input name="ctl00$MC$myvideos_v11$txt_search" id="MC_myvideos_v11_txt_search" class="form-control" placeholder="Search My Photos" type="text">
+                            <span class="input-group-btn">
+                                <input name="ctl00$MC$myvideos_v11$btn_u_search" value="Search" id="MC_myvideos_v11_btn_u_search" class="btn btn-primary" type="submit">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <hr class="colorgraph">
+                <div id="MC_myvideos_v11_shownav" class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ActionLink("Create Album", "CreatePhotoAlbum")
+                        @Html.ActionLink("Upload Photo", "UploadPhotoMedia")
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                    </div>
+                </div>
+                @if (ViewBag.NoPhotos != null)
+                {
+                    <div id="MC_myvideos_v11_norecord" class="jumbotron marginfixed item_c">
+                        <h3 id="MC_myvideos_v11_norec">You have not uploaded any Photos.</h3>
+                    </div>
+                }
+                else
+                {
+                    foreach (var audio in Model)
+                    {
+
+                    }
+                }
+
+            </span>
+
+            <!-- close main content section -->
+
+        </div>
+    </div>
+</div>
+
+
+
+

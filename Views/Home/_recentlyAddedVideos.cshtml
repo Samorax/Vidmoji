@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebApplication1.Models.MediaModels.video>
+
+@foreach (var V in Model)
+{
+    <div class="item item-video">
+        <div class="thumb">
+            <a class="clip-link" href="/video/@V.videoid" title=@V.tags>
+                <span class="clip">
+                    <video id="p1achgi72dd89hv9cf6guq8kn3" src="@Url.Content(V.videofilename)" onmouseout="endm('p1achgi72dd89hv9cf6guq8kn3'); this.src='/contents/member/aaaaaa/Thumbs/p1achgi72dd89hv9cf6guq8kn3_008.jpg'; " onmouseover="startm('p1achgi72dd89hv9cf6guq8kn3','/contents/member/aaaaaa/Thumbs/p1achgi72dd89hv9cf6guq8kn3_','.jpg'); "></Video>
+                </span><span class="overlay"></span>
+            </a>
+        </div>
+        <div class="meta-data">
+            <h2>
+                <a href="/video/@V.videoid" title=@V.tags>@V.tags</a>
+            </h2><p class="views">@V.views views</p>
+        </div>
+    </div>
+}

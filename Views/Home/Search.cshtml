@@ -8,23 +8,25 @@
 
 <div>
     <div>
-        @if (Model.mediaAudios != null)
-        {
-            <ul>
-                @foreach (var item in Model.mediaAudios)
+        
+    @if (Model.mediaAudios.Any())
+    {
+        <ul>
+            @foreach (var item in Model.mediaAudios)
                 {
-                    <li><audio src="@Url.Content(item.videofilename)" controls></audio></li>
-                }
-            </ul>
-        }
-        else
-        {
+                <li><audio src="@Url.Content(item.videofilename)" controls></audio></li>
+            }
+        </ul>
+    }
+    else
+    {
             <p>No Audios found for the term you entered</p>
         }
+        
     </div>
 
     <div>
-        @if (Model.mediaPhotos != null)
+        @if (Model.mediaPhotos.Any())
         {
             <ul>
                 @foreach (var item in Model.mediaPhotos)
@@ -40,12 +42,12 @@
     </div>
 
     <div>
-        @if (Model.mediaVideos != null)
+        @if (Model.mediaVideos.Any())
         {
             <ul>
                 @foreach (var item in Model.mediaVideos)
                 {
-                    <li><video src="@Url.Content(item.videofilename)" controls></video></li>
+                    <li><img src="@Url.Content(item.videofilename)" class="img-responsive" /></li>
                 }
             </ul>
         }

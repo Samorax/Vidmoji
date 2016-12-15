@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebApplication1.Models.UserRelatedModel.category>
+
+@foreach (var category in Model)
+{
+    <div style="width:100%;float:left;" class="item">
+        <div class="well-spad">
+            <a href="/videos/category/@category.categoryid" class="medium-text bold reverse" title=@category.categoryname>@category.categoryname</a>
+        </div>
+    </div>
+}
+

@@ -1,7 +1,155 @@
 ﻿
 @{
-    ViewBag.Title = "CreateVideoAlbum";
+    ViewBag.Title = "Create Video Album - Video Starter Kit";
 }
 
-<h2>CreateVideoAlbum</h2>
+
+<div class="tab-content container account-wrapper">
+    <div class="tab-pane myaccount-inner-wrap active">
+        <div class="row">
+            <div class="col-md-3">
+                <div id="MC_vd_nav1_nav" class="list-group">
+                    @Html.ActionLink("Upload Videos", "UploadVideos", null, new { @class = "list-group-item condensed active" })
+                    @Html.ActionLink("My Videos", "MyVideos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Albums", "MyAlbums", null, new { @class = "list-group-item condensed " })
+                    @Html.ActionLink("My Liked Videos", "MyLikedVideos", null, new { @class = "list-group-item condensed" })
+                    @Html.ActionLink("My Liked Albums", "MyLikedAlbums", null, new { @class = "list-group-item condensed" })
+                </div>
+            </div>
+            <div class="col-md-9">
+                <script type="text/javascript">
+                    $(function () {
+                        $("#MC_create1_l_category").chosen({ max_selected_options: 5 });
+                    });
+                </script>
+                <div id="MC_create1_msg">
+                </div>
+                <div id="MC_create1_main">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @using (Html.BeginForm("CreateVideoAlbum", "MyAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <h3 id="MC_create1_cmt">Create Video Album</h3>
+                                <hr class="colorgraph">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="MC_create1_txt_title">
+                                                    Title:
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <input name="ctl00$MC$create1$txt_title" maxlength="100" id="MC_create1_txt_title" class="form-control" placeholder="Enter Album Title" type="text">
+                                                <span id="MC_create1_RequiredFieldValidator2" title="required" class="mini-text red bold" style="visibility:hidden;">required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="MC_create1_txt_description">
+                                                    Description
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <textarea name="ctl00$MC$create1$txt_description" rows="2" cols="20" id="MC_create1_txt_description" class="form-control" onkeyup="Count_Chars(this,'#th_cnt',2000);" style="height:70px;"></textarea><br>
+                                                <strong id="th_cnt">2000</strong>
+                                                chars left.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for=" MC_create1_txt_tags">
+                                                    Tags:
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <input name="ctl00$MC$create1$txt_tags" maxlength="100" id="MC_create1_txt_tags" class="form-control" placeholder="Add multiple tags or labels separated with comma (,)" type="text">
+                                                <span id="MC_create1_RequiredFieldValidator5" title="required" class="mini-text red bold" style="visibility:hidden;">required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="MC_create1_mcat" class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="MC_create1_l_category">
+                                                    Select Categories:
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <select size="4" name="ctl00$MC$create1$l_category" multiple="multiple" id="MC_create1_l_category" class="form-control" style="height:100px;">
+                                                    <option value=" "> Select Category </option>
+                                                    <option value="abstract">Abstract</option>
+                                                    <option value="aircraft">Aircraft</option>
+                                                    <option value="animals">Animals</option>
+                                                    <option value="anime">Anime</option>
+                                                    <option value="architecture">Architecture</option>
+                                                    <option value="boats">Boats</option>
+                                                    <option value="entertainment">Entertainment</option>
+                                                    <option value="motorcycles">Motorcycles</option>
+                                                    <option value="nature">Nature</option>
+                                                    <option value="people">People</option>
+                                                    <option value="space">Space</option>
+                                                    <option value="sports">Sports</option>
+                                                    <option value="technology">Technology</option>
+                                                    <option value="video games">Video Games</option>
+                                                </select>
+                                                <span id="MC_create1_req_l" title="required" class="mini-text red bold" style="visibility:hidden;">required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label for=" MC_create1_drp_privacy">
+                                                    Privacy:
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                            <div class="form-group">
+                                                <select name="ctl00$MC$create1$drp_privacy" id="MC_create1_drp_privacy" class="form-control">
+                                                    <option selected="selected" value="">Select Privacy Option</option>
+                                                    <option value="0">Public</option>
+                                                    <option value="2">Unlisted</option>
+                                                    <option value="3">Private</option>
+                                                </select>
+                                                <span id="MC_create1_RequiredFieldValidator1" title="required" class="mini-text red bold" style="visibility:hidden;">required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <input name="ctl00$MC$create1$btn_update" value="Submit" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MC$create1$btn_update&quot;, &quot;&quot;, true, &quot;val_upload&quot;, &quot;&quot;, false, false))" id="MC_create1_btn_update" class="btn btn-primary btn-lg" type="submit">
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
 

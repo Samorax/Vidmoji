@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebApplication1.Models.MediaModels.video>
+
+<ul>
+    @foreach (var Video in Model)
+    {
+        <li>
+            <a href="/videos/@Video.videoid" alt="@Video.tags videos album">@Video.tags</a>
+        </li>
+    }
+    
+</ul>
